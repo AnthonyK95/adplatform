@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('register', { title: 'Registration' });
 });
 router.post('/', function(req,res,next){
-  var hello = document.getElementById('email').value
-  console.log(hello)
+  var email  = req.body.email;
+  res.send(email)
 });
 module.exports = router;
