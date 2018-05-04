@@ -50,3 +50,7 @@ a {
 #index-page h2{
   background-color: black;
 }
+#error-webapp{
+  text-align: center;
+  margin-top: 150px;
+}

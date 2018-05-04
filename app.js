@@ -3,15 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+//Adding sessions plugin
+var session = require('express-session');
+//Index routing
 var indexRouter = require('./routes/index');
 // Adding Registration'
-var registerRoute = require ('./routes/register')
+var registerRoute = require ('./routes/register');
 // Adding Login
-var loginRoute = require ('./routes/login')
+var loginRoute = require ('./routes/login');
 
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+
 app.use('/registration',registerRoute);
 app.use('/login',loginRoute);
 
