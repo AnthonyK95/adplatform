@@ -43,3 +43,10 @@ a {
 .create:hover{
   width: 270px;
 }
+#index-page{
+  text-align:center;
+  margin-top: 200px;
+}
+#index-page h2{
+  background-color: black;
+}
