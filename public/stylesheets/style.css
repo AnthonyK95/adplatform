@@ -17,10 +17,10 @@ a:hover{
 }
 #register{
       text-align:center;
-      margin-top: 270px;
+      margin-top: 230px;
 }
 
-#register .text{
+ .text{
       width: 250px;
       height: 45px;
       background-color:#dae2df ;
@@ -68,3 +68,8 @@ a:hover{
     margin-top: 50px;
     outline: none;
 }
+#login-page{
+    text-align:center;
+    margin-top: 250px;
+}
+

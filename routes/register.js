@@ -10,7 +10,5 @@ router.post('/', function(req,res){
   var email  = req.body.email;
   var password = req.body.password;
   res.send(email);
-
-
 });
 module.exports = router;

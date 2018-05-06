@@ -5,4 +5,10 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     res.render('login', { title: 'Advocate | Login' });
   });
+
+router.post('/', function(req,res){
+    var name  = req.body.username;
+    var password = req.body.password;
+    res.send(name);
+});
   module.exports = router;

@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title><%= title %></title>
 </head>
 <body>
-    
+<section id="login-page">
+    <div class="container">
+    <form action="/login" method="post">
+        <input type="text" id="username" name="username" class="text" placeholder="Username"><br><br>
+        <input type="password" id="password" name="password" class="text" placeholder="Password"/><br><br>
+        <input type="submit" id="create" name="Submit" class="create" value="Save"/><br><br>
+    </form>
+    </div>
+</section>
 </body>
 </html>
