@@ -56,6 +56,7 @@ a:hover{
 #index-page h2{
     background-color: black;
     margin-top: 50px;
+
 }
 #error-webapp{
     text-align: center;
@@ -103,7 +104,7 @@ a:hover{
     margin-top: -15px;
 }#notes{
      color: #f46841;
-     margin-top: -100px;
+     margin-top: -170px;
      border:1px solid #d3d3d3;
      width:600px;
      text-align:center;
@@ -115,7 +116,7 @@ a:hover{
      -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
      border-radius: 5px;
-    box-shadow:0 0 2px 0 #d3d3d3;
+     box-shadow:0 0 2px 0 #d3d3d3;
  }#notes h2{text-align: center;margin-top:45px;}
  #notes p{
      text-align: center;
