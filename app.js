@@ -11,6 +11,8 @@ var indexRouter = require('./routes/index');
 var registerRoute = require ('./routes/register');
 // Adding Login
 var loginRoute = require ('./routes/login');
+//Adding the main-app
+var mainappRoute = require('./routes/core   ');
 
 
 var app = express();
@@ -25,11 +27,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+//Basic loading of the web page
 app.use('/', indexRouter);
-
+// routers created
 app.use('/registration',registerRoute);
 app.use('/login',loginRoute);
+app.use('/core',mainappRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

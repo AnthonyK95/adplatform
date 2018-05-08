@@ -9,6 +9,6 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req,res){
     var name  = req.body.username;
     var password = req.body.password;
-    res.send(name);
+    res.send(password);
 });
   module.exports = router;
