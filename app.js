@@ -12,7 +12,7 @@ var registerRoute = require ('./routes/register');
 // Adding Login
 var loginRoute = require ('./routes/login');
 //Adding the main-app
-var mainappRoute = require('./routes/core   ');
+var mainappRoute = require('./routes/core');
 
 
 var app = express();
