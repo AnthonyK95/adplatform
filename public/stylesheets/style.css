@@ -44,7 +44,6 @@ a:hover{
 }
 .create:hover{
     width: 270px;
-
 }
 #index-page{
     text-align:center;
@@ -106,9 +105,9 @@ a:hover{
      color: #f46841;
      margin-top: -170px;
      border:1px solid #d3d3d3;
-     width:600px;
+     width:40%;
      text-align:center;
-     margin-left: 380px;
+     margin-left: 30%;
      height: 170px;
      position:relative;
      margin-bottom: 50px;
@@ -121,6 +120,67 @@ a:hover{
  #notes p{
      text-align: center;
  }
+
+
+ /* ------------------Dashboard--------------- */
+ nav{
+     width: 100%;
+     min-height: 50px;
+     background-color:#f46841; 
+ }
+ nav ul{
+     list-style: none;
+ }
+ nav ul li{
+     display: inline;
+     padding: 15px;
+     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     font-size: 20px;
+     color:white;
+    }
+ nav ul .goright{
+     float: right;
+     cursor: pointer;
+     margin-top: -15px;
+     font-size: 20px;
+     color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ }
+ #Components{
+     border:1px solid lightgrey;
+     margin-top: 120px;
+     width: 50%;
+     text-align:center;
+     margin-left: 10%;
+     float: left;
+     border-radius: 3px;
+ }
+ #side-menu{
+     float: right;
+     width: 30%;
+     margin-right: 60px;
+     min-height: 100px;
+     margin-top: 100px;
+ }
+ #side-menu ul {
+    list-style: none;
+    border:1px solid lightgray;
+    text-align:center;
+    border-radius: 3px;
+ }
+ #side-menu ul li {
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    margin-right: 22px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    outline: none; 
+ }
+ #side-menu ul li:hover{
+     color: #f46841;
+ }
+
+
 
 
 

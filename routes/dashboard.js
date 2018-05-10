@@ -12,8 +12,11 @@ router.get('/', function(req, res, next) {
         return res.status(401).send('General Error');
     }
     else{
-    res.send(req.session.activeuser._id);
-    res.render('dashboard', { title: 'Advocate | Dashboard' });
+    // res.write(req.session.activeuser._id);
+    res.render('dashboard', {
+        title: 'Advocate | Dashboard', 
+        id: req.session.activeuser._id
+        });
     }
 });
 
