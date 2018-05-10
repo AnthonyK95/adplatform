@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
 //Adding sessions plugin
 var session = require('express-session');
 //Index routing
@@ -12,7 +13,8 @@ var registerRoute = require ('./routes/register');
 // Adding Login
 var loginRoute = require ('./routes/login');
 //Adding the main-app
-var mainappRoute = require('./routes/core');
+var mainappRoute = require('./routes/dashboard');
+// Requiring the Mongodb package
 var mongoose = require('mongoose')
 
 
@@ -30,13 +32,19 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Using sessions
+app.use(session({secret:"ThisIsTopSecret",resave:false,saveUninitialized:true}));
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 //Basic loading of the web page
 app.use('/', indexRouter);
 // routers created
 app.use('/registration',registerRoute);
 app.use('/login',loginRoute);
-app.use('/core',mainappRoute);
+app.use('/dashboard',mainappRoute);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

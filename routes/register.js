@@ -5,9 +5,6 @@ var mongoose = require('mongoose');
 var User = require('../dbSchemas/userAdvocate');
 
 
-
-
-
 /* GET Registration Page. */
 router.get('/', function(req, res, next) {
   res.render('register', { title: 'Advocate | Registration' });
@@ -28,7 +25,7 @@ router.post('/', function(req,res,next){
           return next(err)
         }
         else{
-            res.redirect('/core');
+            res.redirect('/dashboard');
         }
       })
     }
