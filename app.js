@@ -13,9 +13,15 @@ var registerRoute = require ('./routes/register');
 var loginRoute = require ('./routes/login');
 //Adding the main-app
 var mainappRoute = require('./routes/core');
+var mongoose = require('mongoose')
 
 
 var app = express();
+
+
+// Connecting to the database
+mongoose.connect('mongodb://localhost/advocate');
+
 
 
 // view engine setup

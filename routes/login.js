@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+
+
 
 // getting the login page
 router.get('/', function(req, res, next) {
@@ -7,8 +10,8 @@ router.get('/', function(req, res, next) {
   });
 
 router.post('/', function(req,res){
-    var name  = req.body.username;
+    var username  = req.body.username;
     var password = req.body.password;
-    res.send(password);
+
 });
   module.exports = router;
