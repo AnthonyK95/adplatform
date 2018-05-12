@@ -3,12 +3,15 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User = require('../dbSchemas/userAdvocate');
+var session = require('express-session');
 
 
 /* GET Registration Page. */
 router.get('/', function(req, res, next) {
   res.render('register', { title: 'Advocate | Registration' });
 });
+
+
 // Posting data to Registration Page
 router.post('/', function(req,res,next){
     // Checking the fields for input
@@ -25,8 +28,20 @@ router.post('/', function(req,res,next){
           return next(err)
         }
         else{
-            res.redirect('/dashboard');
-        }
+            
+            User.findOne({username: credentials.username, password: credentials.password}, (err,user)=>{
+                if (err){
+                  return next(err);
+                }
+                if (!user) {
+                 res.send("Can't find user");
+                }
+                else{       
+                 req.session.activeuser = user;
+                 res.redirect('/dashboard');               
+                }
+           });
+         }
       })
     }
     else{
