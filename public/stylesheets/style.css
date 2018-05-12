@@ -4,11 +4,12 @@ body{
       background-color: #f4f4f9;
 }
 a {
-      color: #f46841;
+      /* color: #f46841; */
+      color: white;
       text-decoration: none;
 }
 a:hover{
-      color: orangered;
+      /* color: orangered; */
 }
 .container{
       width: 70%;
@@ -109,7 +110,7 @@ a:hover{
      width:40%;
      text-align:center;
      margin-left: 30%;
-     height: 170px;
+     height: auto;
      position:relative;
      margin-bottom: 50px;
      bottom: -40px;
@@ -198,6 +199,7 @@ a:hover{
     padding: 20px;
     border: 1px solid #888;
     width: 60%; 
+    height: 30vh;
     display: block;
     text-align:center;
     border-radius: 3px;

@@ -18,19 +18,33 @@ function addcomponentmodal(){
     deviceID.setAttribute("placeholder","Serial Number");
     deviceID.className = "text";
 
-    
+    // Creating the company choice field
+    var companyID = document.createElement("INPUT");
+    companyID.setAttribute("type","text");
+    companyID.setAttribute("placeholder","Company");
+    companyID.className = "text";
 
-
+    // Creatign the br elements
+    var Space1 = document.createElement("br");
+    var Space2 = document.createElement("br");
 
     // Create Register Component Button
     var SignComponent = document.createElement("INPUT");
     SignComponent.className = "create";
     SignComponent.setAttribute("type","submit");
     SignComponent.setAttribute("value","Register Component");
-    
+
+     
  
+     
     // Appending the Device Field 
     componentbox_content.appendChild(deviceID);
+    componentbox_content.appendChild(Space1)
+    
+    // Appending the Company Id field
+    componentbox_content.appendChild(companyID);
+    // Appending the Br Space between the fields
+    componentbox_content.appendChild(Space2);
     // Appending the Sign Component Button
     componentbox_content.appendChild(SignComponent);
 
@@ -42,13 +56,17 @@ function addcomponentmodal(){
 
     // Deleting the Component Box after Creation
     SignComponent.addEventListener('click',()=>{
-        componentbox.remove();
+        var IDDevice = deviceID.value;
+        var IDCompany = companyID.value;
+        console.log("Device"  + IDDevice);
+        console.log("Company"  + IDCompany);
     });
 
 
     // Handling the Outside Click
     window.onclick = function(event) {
         if (event.target == componentbox) {
+            componentbox.style.display = "none";
             componentbox.remove();
         }
     } 

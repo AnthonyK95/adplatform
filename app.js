@@ -40,11 +40,16 @@ app.use(session({secret:"ThisIsTopSecret",resave:false,saveUninitialized:true}))
 app.use(express.static(path.join(__dirname, 'public')));
 //Basic loading of the web page
 app.use('/', indexRouter);
-// routers created
+// Routers Created
 app.use('/registration',registerRoute);
 app.use('/login',loginRoute);
 app.use('/dashboard',mainappRoute);
 
+// Handle the logout session part
+app.use('/logout',(req,res,next)=>{
+  req.session.destroy();
+  res.redirect('/');
+});
 
 
 // catch 404 and forward to error handler

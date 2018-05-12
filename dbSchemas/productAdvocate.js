@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = require('../dbSchemas/userAdvocate')
-// Creating the product schema
+
+// Creating the product Schema
 var productSchema = new mongoose.Schema({
     _id:mongoose.Schema.Types.ObjectId,
     owner: User._id,

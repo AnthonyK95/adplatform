@@ -20,12 +20,14 @@ router.get('/', function(req, res, next) {
 
 // Posting Data to the Page
 router.post('/', function (req,res,next){
+    // Checking for active sessions
     if (!req.session.activeuser){
         return res.status(401).send('Error on Posting data to the db');
     }
     else{
-        res.send('Correct Data');
+        res.send('Posted Data');
     }
 });
+
 
 module.exports = router;
