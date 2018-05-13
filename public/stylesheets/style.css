@@ -10,6 +10,7 @@ a {
 }
 a:hover{
       /* color: orangered; */
+      color: white;
 }
 .container{
       width: 70%;
