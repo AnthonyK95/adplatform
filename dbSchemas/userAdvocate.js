@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
+
 
 //Creating the user schema
 var userSchema = new mongoose.Schema({

@@ -21,7 +21,7 @@ var mongoose = require('mongoose')
 var app = express();
 
 
-// Connecting to the database
+// Connecting to the database usign mongoose
 mongoose.connect('mongodb://localhost/advocate');
 
 // view engine setup
@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Using sessions
+// Using sessions with a costume Secret key
 app.use(session({secret:"ThisIsTopSecret",resave:false,saveUninitialized:true}));
 
 
