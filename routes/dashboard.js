@@ -14,12 +14,12 @@ router.get('/', function(req, res, next) {
     // res.write(req.session.activeuser._id);
     res.render('dashboard', {
         title: 'Advocate | Dashboard', 
-        id: req.session.activeuser.username //Change this value with the live export of the dom creation
+        username: req.session.activeuser.username //Change this value with the live export of the dom creation
         });
     }
 });
 
-// Posting Data to the Page
+// Post new devices to dashboard
 router.post('/', function (req,res,next){
     // Checking for active sessions
     if (!req.session.activeuser){
@@ -32,7 +32,7 @@ router.post('/', function (req,res,next){
                 owner:req.session.activeuser._id,
                 deviceID:req.body.deviceID,
                 companyID:req.body.companyID,
-                confirmationstatus: "False"
+                confirmationstatus: "pending"
             });
             device.save((err,product)=>{
                 if(err){

@@ -16,6 +16,7 @@
             <ul>
                 <li onClick="window.location.reload()" style="cursor:pointer;">Advocate Platform</li>
                 <li class="goright"><a href="logout">Sign Out</a></li>
+                <li class="gooright"><%= username %></li>
             </ul>
         </div>
     </nav>
@@ -27,7 +28,9 @@
     <section id="Components">
         <div class="container">
             <h1>Devices</h1>
-            <%= id %>
+            <div id="box">
+                <h1><%= username %></h1>
+            </div>
         </div>
     </section>
     <!-- Static Files -->
