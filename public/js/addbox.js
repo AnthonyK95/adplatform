@@ -32,7 +32,7 @@ function addcomponentmodal(){
     companyID.className = "text";
     companyID.name = "companyID";
 
-    // Creatign the br elements
+    // Creating the br elements
     var Space1 = document.createElement("br");
     var Space2 = document.createElement("br");
 

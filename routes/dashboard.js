@@ -32,19 +32,21 @@ router.post('/', function (req,res,next){
                 owner:req.session.activeuser._id,
                 deviceID:req.body.deviceID,
                 companyID:req.body.companyID,
-                confirmationstatus: "pending"
+                deviceType: "" //change this with the requested field of choosing the type of the device
             });
             device.save((err,product)=>{
                 if(err){
                     return next(err);
                 }
                 else{
-                    res.send('Added a new device'); // change this one with the reload of the device
+                    //change this with active notification and product component show
+                    res.send('Added a new device');
                 }
             });
         }
         else{
             res.send('there is an error on submiting the device');
+
         }    
     }
 });
