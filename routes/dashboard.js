@@ -41,12 +41,13 @@ router.post('/', function (req,res,next){
                 else{
                     //change this with active notification and product component show
                     res.send('Added a new device');
+                    // replace this line with the embedded alert notification
+                    
                 }
             });
         }
         else{
-            res.send('there is an error on submiting the device');
-
+            res.send('Error on submitting the device');
         }    
     }
 });

@@ -14,6 +14,8 @@ var registerRoute = require ('./routes/register');
 var loginRoute = require ('./routes/login');
 //Adding the main-app
 var mainappRoute = require('./routes/dashboard');
+//Adding the Company Route
+var companyRoute = require('/routes/company');
 // Requiring the Mongodb package
 var mongoose = require('mongoose')
 
@@ -44,6 +46,9 @@ app.use('/', indexRouter);
 app.use('/registration',registerRoute);
 app.use('/login',loginRoute);
 app.use('/dashboard',mainappRoute);
+
+
+app.use('/companyDashboard',companyRoute);
 
 // Handle the logout session part
 app.use('/logout',(req,res,next)=>{
