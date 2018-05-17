@@ -99,5 +99,4 @@ var add_component = document.getElementById('add_component');
 add_component.addEventListener('click',()=>{
     addcomponentmodal();
 });
-
-// Taking the value of the fields and run 
+ 

@@ -161,10 +161,11 @@ a:hover{
  #Components{
      border:1px solid lightgrey;
      margin-top: 40px;
-     width: 80%;
+     width: 90%;
      text-align:center;
-     margin-left: 10%;
+     margin-left: 5%;
      float: left;
+     height: 70vh;
      border-radius: 3px;
      background-color: white;
      box-shadow: 0 0 2px 0 darkgrey;
@@ -228,13 +229,23 @@ a:hover{
     text-decoration: none;
     cursor: pointer;
 }
+#box{
+    width: 100%;
+    text-align: center;
+}
 .Items{
     list-style-type: none;    
-    display: inline;
+    
 }
-.Item .listedItems{
-    display: inline;
+.Items .listedItems{
+    margin-right: 40px;
+    border:1px solid lightgrey;
+    border-radius:5px;
 }
+.Items .listedItems:hover{
+    box-shadow: 0 0 2px 0 grey;
+}
+   
  
 
 
