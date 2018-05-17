@@ -46,9 +46,8 @@ app.use('/', indexRouter);
 app.use('/registration',registerRoute);
 app.use('/login',loginRoute);
 app.use('/dashboard',mainappRoute);
-
-
 app.use('/company',companyDashboard);
+
 
 // Handle the logout session part
 app.use('/logout',(req,res,next)=>{

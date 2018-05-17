@@ -19,20 +19,23 @@
             </ul>
         </div>
     </nav>
+    <!-- Creating the Component Section -->
     <section id="Components">
         <div class="container">
             <h1>Devices</h1>
             <div id="box">
-                <h1>Welcome <%= username %></h1>
-                <!-- Listing all the devices of the -->
+                <h1><%= username %> Devices</h1>
+                <!-- Listing all the devices of the Current  -->
                 <% product.forEach(function (products) { %>
-                    <li>  
-                        <h1><%= products.companyID %></h1>  
+                    <li onclick="takeaction()">  
+                        <!-- Displaying all the  -->
+                        <h2 id="companyID" style="cursor: pointer;"><%= products.companyID %></h2>
+                        <h3 id="deviceID"><%= products._id %></h3>
                     </li>                                   
-                <% }) %>
-               
+                <% }) %>         
             </div>
         </div>
     </section>
+    <script src="/js/ItemList.js"></script>
 </body>
 </html>
