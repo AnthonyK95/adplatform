@@ -36,9 +36,18 @@ router.post('/', function(req,res,next){
                 if (!user) {
                  res.send("Can't find user");
                 }
-                else{       
-                 req.session.activeuser = user;
-                 res.redirect('/dashboard');               
+                else{
+                    if(user.username !== 'samsung'){
+                        req.session.activeuser = user;
+                        res.redirect('/dashboard');
+                    }
+                    else{
+                        //I've created the redirection for the example that a company log's in
+                        req.session.activeuser = user;
+                        req.redirect('/company');
+                    }
+
+
                 }
            });
          }

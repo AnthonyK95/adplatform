@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         return res.status(401).redirect('/');
     }
     else{
-    // res.write(req.session.activeuser._id);
+    
     res.render('dashboard', {
         title: 'Advocate | Dashboard', 
         username: req.session.activeuser.username //Change this value with the live export of the dom creation
@@ -32,7 +32,7 @@ router.post('/', function (req,res,next){
                 owner:req.session.activeuser._id,
                 deviceID:req.body.deviceID,
                 companyID:req.body.companyID,
-                deviceType: "" //change this with the requested field of choosing the type of the device
+                deviceType: req.body.deviceType
             });
             device.save((err,product)=>{
                 if(err){
@@ -40,7 +40,7 @@ router.post('/', function (req,res,next){
                 }
                 else{
                     //change this with active notification and product component show
-                    res.send('Added a new device');
+                    
                     // replace this line with the embedded alert notification
                     
                 }

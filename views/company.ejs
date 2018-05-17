@@ -5,9 +5,30 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Company Tools</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title><%= title%></title>
 </head>
 <body>
-    <h1>We are the company</h1>
+    <!-- Creating the navigation of the website -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li onClick="window.location.reload()" style="cursor:pointer;">Advocate Platform</li>
+                <li class="goright"><a href="logout">Sign Out</a></li>
+                <li class="gooright"><%= username %></li>
+            </ul>
+        </div>
+    </nav>
+    <section id="Components">
+        <div class="container">
+            <h1>Devices</h1>
+            <div id="box">
+                <h1>Welcome <%= username %></h1>
+                <!-- Listing all the devices of the -->
+                <%= product %>
+               
+            </div>
+        </div>
+    </section>
 </body>
 </html>

@@ -32,9 +32,17 @@ function addcomponentmodal(){
     companyID.className = "text";
     companyID.name = "companyID";
 
+    // Creating the Device Type Choice field
+    var deviceType = document.createElement("INPUT");
+    deviceType.setAttribute("type","text");
+    deviceType.setAttribute("placeholder","Device Type");
+    deviceType.className = "text";
+    deviceType.name = "deviceType";
+
     // Creating the br elements
     var Space1 = document.createElement("br");
     var Space2 = document.createElement("br");
+    var Space3 = document.createElement("br");
 
     // Create Register Component Button
     var SignComponent = document.createElement("INPUT");
@@ -56,6 +64,10 @@ function addcomponentmodal(){
     form.appendChild(companyID);
     // Appending the Br Space between the fields
     form.appendChild(Space2);
+    // Append->form the Device Type
+    form.appendChild(deviceType);
+    form.appendChild(Space3);
+
     // Appending the Sign Component Button
     componentbox_content.appendChild(SignComponent);
     // Appending the components inside the Component Box
@@ -78,9 +90,7 @@ function addcomponentmodal(){
             componentbox.style.display = "none";
             componentbox.remove();
         }
-    } 
-
-    
+    }    
 }
 
 

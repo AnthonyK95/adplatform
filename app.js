@@ -15,9 +15,9 @@ var loginRoute = require ('./routes/login');
 //Adding the main-app
 var mainappRoute = require('./routes/dashboard');
 //Adding the Company Route
-var companyRoute = require('/routes/company');
+var companyDashboard = require('./routes/company');
 // Requiring the Mongodb package
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 
 var app = express();
@@ -48,7 +48,7 @@ app.use('/login',loginRoute);
 app.use('/dashboard',mainappRoute);
 
 
-app.use('/companyDashboard',companyRoute);
+app.use('/company',companyDashboard);
 
 // Handle the logout session part
 app.use('/logout',(req,res,next)=>{
@@ -62,7 +62,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// Error Handling
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
