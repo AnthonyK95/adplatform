@@ -228,6 +228,13 @@ a:hover{
     text-decoration: none;
     cursor: pointer;
 }
+.Items{
+    list-style-type: none;    
+    display: inline;
+}
+.Item .listedItems{
+    display: inline;
+}
  
 
 

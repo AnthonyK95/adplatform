@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
        
 });
 
-//Getting the values of the boxes and Posting them the user
+//Analyze the Contract of the company and present it to the user
 router.post('/',function(req,res,next){
     if(!req.session.activeuser){
         return res.status(401).redirect('/');
