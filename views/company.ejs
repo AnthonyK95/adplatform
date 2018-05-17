@@ -25,7 +25,11 @@
             <div id="box">
                 <h1>Welcome <%= username %></h1>
                 <!-- Listing all the devices of the -->
-                <%= product %>
+                <% product.forEach(function (products) { %>
+                    <li>  
+                        <h1><%= products.companyID %></h1>  
+                    </li>                                   
+                <% }) %>
                
             </div>
         </div>
