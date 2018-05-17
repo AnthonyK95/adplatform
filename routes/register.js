@@ -44,7 +44,7 @@ router.post('/', function(req,res,next){
                     else{
                         //I've created the redirection for the example that a company log's in
                         req.session.activeuser = user;
-                        req.redirect('/company');
+                        res.redirect('/company');
                     }
 
 
