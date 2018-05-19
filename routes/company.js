@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
                 title:"Advocate | Company Tools",
                 username:req.session.activeuser.username,
                 // Passing the values to a product variable
-                product: products
+                product: products               
             });
         });
     }
@@ -34,7 +34,7 @@ router.post('/',function(req,res,next){
         return res.status(401).redirect('/');
     }
     else{
-        
+        // add the notification systen of the 
     }
 });
 
