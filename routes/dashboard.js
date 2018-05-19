@@ -11,10 +11,13 @@ router.get('/', function(req, res, next) {
         return res.status(401).redirect('/');
     }
     else{
-    
-    res.render('dashboard', {
-        title: 'Advocate | Dashboard', 
-        username: req.session.activeuser.username //Change this value with the live export of the dom creation
+      Product.find({}, function(err, products) {
+          if (err) throw err;
+      res.render('dashboard', {
+          title: 'Advocate | Dashboard',
+          username: req.session.activeuser.username,
+          product:products
+          });
         });
     }
 });
@@ -40,15 +43,15 @@ router.post('/', function (req,res,next){
                 }
                 else{
                     //change this with active notification and product component show
-                    
+
                     // replace this line with the embedded alert notification
-                    
+
                 }
             });
         }
         else{
             res.send('Error on submitting the device');
-        }    
+        }
     }
 });
 

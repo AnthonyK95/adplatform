@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var User = require('../dbSchemas/userAdvocate');
 var session = require('express-session');
 var Product = require('../dbSchemas/productAdvocate');
+// Getting the Smart Contract
+var file  = require('../requestContract/contract.json');
 
 
 //Getting the Company Dashboard
@@ -35,7 +37,10 @@ router.post('/',function(req,res,next){
     }
     else{
         // add the notification systen of the
-        res.send("posted correcly");
+        // res.send("posted correcly");
+
+        res.send(file.AdvocatePrivacyReview.Client);
+
     }
 });
 
