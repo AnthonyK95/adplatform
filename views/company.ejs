@@ -25,19 +25,23 @@
             <div id="box">
                 <h1><%= username %> Devices</h1>
                 <!-- Listing all the devices of the Current  -->
-                <% product.forEach(function (products) { %>
-                <ul class="Items">                   
-                    <li class="listedItems" style="cursor: pointer;">  
-                        <!-- Displaying all the devices on static html-->
-                        <h2><%= products.companyID %></h2>
-                        <h3 class="getinner"><%= products._id %></h3>
+                <% product.forEach(function (products) {    %>
+                <ul class="Items">
+                    <li class="listedItems" style="cursor: pointer;" onclick="give('<%= products.id %>','<%= products.deviceType %>')">
+                        <h2><%= products.companyID%></h2>
+                        <h3 class="take"><%= products.id %></h3>
                         <h4><%= products.deviceType %></h4>
                     </li>
-                </ul>                                   
-                <% }) %>         
+                </ul>
+                <% }) %>
             </div>
         </div>
     </section>
+    <section id="modal"></section>
+
+
+
+    <!--  Adding Scripting files -->
     <script src="/js/ItemList.js"></script>
 </body>
 </html>
