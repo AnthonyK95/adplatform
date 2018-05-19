@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
         return res.status(401).redirect('/');
     }
     else{
+        // TODO add the query for the Companny ID 
         Product.find({}, function(err, products) {
             if (err) throw err;
           
@@ -33,7 +34,7 @@ router.post('/',function(req,res,next){
         return res.status(401).redirect('/');
     }
     else{
-        // Posting the contract of the devices
+        
     }
 });
 
