@@ -82,7 +82,7 @@ function addcomponentmodal(){
         form.submit();
         componentbox.remove();
     });
-a
+
 
     // Handling the Outside Click
     window.onclick = function(event) {
