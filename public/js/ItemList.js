@@ -25,11 +25,13 @@ function createtheContract(productid,productType){
 
       var h3 = document.createElement("h3");
       var inside_h1 = document.createTextNode("Device ID: "+productid);
+      h3.name = "productid"
       h3.style.marginTop = "50px";
       h3.appendChild(inside_h1);
 
       var h4 = document.createElement("h3");
       var inside_h1 = document.createTextNode("Device Type: "+productType);
+      h4.name = "productType";
       h4.appendChild(inside_h1);
 
       // Create the Send Contract in Button
@@ -37,13 +39,35 @@ function createtheContract(productid,productType){
       SignComponent.className = "create";
       SignComponent.setAttribute("type","submit");
       SignComponent.setAttribute("formmethod","post");
-      SignComponent.setAttribute("value","Send Contract");
+      SignComponent.setAttribute("value","Create & Send");
+
+
+
+      // DeviceID->setting the value to post
+      var deviceID = document.createElement("INPUT");
+      deviceID.setAttribute("type","text");
+      deviceID.className = "text";
+      deviceID.name = "deviceID";
+      deviceID.value = productid;
+      deviceID.style.display = "none";
+
+
+
+      // Device Type->setting the value to post
+      var deviceType = document.createElement("INPUT");
+      deviceType.setAttribute("type","text");
+      deviceType.className = "text";
+      deviceType.name = "deviceType";
+      deviceType.value = productType;
+      deviceType.style.display = "none";
+
 
       // Appending the Device Form
       componentbox_content.appendChild(form);
       form.appendChild(h3);
-        form.appendChild(h4);
-
+      form.appendChild(h4);
+      form.appendChild(deviceID);
+      form.appendChild(deviceType);
       // Appending->form a space
       form.appendChild(Space1);
 

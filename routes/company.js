@@ -5,7 +5,9 @@ var User = require('../dbSchemas/userAdvocate');
 var session = require('express-session');
 var Product = require('../dbSchemas/productAdvocate');
 // Getting the Smart Contract
-var file  = require('../requestContract/contract.json');
+var Contract  = require('../dbSchemas/contractAdvocate');
+var fs = require('fs');
+
 
 
 //Getting the Company Dashboard
@@ -36,11 +38,42 @@ router.post('/',function(req,res,next){
         return res.status(401).redirect('/');
     }
     else{
-        // add the notification systen of the
-        // res.send("posted correcly");
+      if(req.body.deviceID&&req.body.deviceType){
+        // Getting the data for the device contract
+        var deviceID = req.body.deviceID;
+        var deviceType = req.body.deviceType;
+        var companyName = req.session.activeuser._id;
 
-        res.send(file.AdvocatePrivacyReview.Client);
+        // Creating the temporary contract
+        const contract = new Contract({
+            _id: deviceID,
+            company:companyName,
+            deviceID:deviceID,
+            deviceType:deviceType,
+            confirmSign: "pending"
+        });
 
+        contract.save((err,contractfile)=>{
+          if(err){
+            return next(err);
+          }
+          else{
+          res.send(contractfile);
+
+
+
+
+
+
+
+
+
+          }
+        });
+      }
+      else{
+        console.log("there was an error");
+      }
     }
 });
 
