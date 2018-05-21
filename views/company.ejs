@@ -22,15 +22,16 @@
     <!-- Creating the Component Section -->
     <section id="Components">
         <div class="container">
-            <div id="box">
+            <div id="box" >
                 <h1><%= username %> Devices</h1>
                 <!-- Listing all the devices of the Current  -->
                 <% product.forEach(function (products) {    %>
-                <ul class="Items">
-                    <li class="listedItems" style="cursor: pointer;" onclick="give('<%= products.id %>','<%= products.deviceType %>')">
+                <ul class="Items" >
+                    <li id="listedItems" style="cursor: pointer;" onclick="give('<%= products.id %>','<%= products.deviceType %>')">
                         <h2><%= products.companyID%></h2>
                         <h3 class="take"><%= products.id %></h3>
                         <h4><%= products.deviceType %></h4>
+                        
                     </li>
                 </ul>
                 <% }) %>

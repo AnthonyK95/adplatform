@@ -264,12 +264,12 @@ outline-color:#f46841;
     list-style-type: none;    
     
 }
-.Items .listedItems{
+.Items #listedItems{
     margin-right: 40px;
     border:1px solid lightgrey;
     border-radius:5px;
 }
-.Items .listedItems:hover{
+.Items #listedItems:hover{
     box-shadow: 0 0 2px 0 grey;
 }
    

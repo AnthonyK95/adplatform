@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         return res.status(401).redirect('/');
     }
     else{
-      Product.find({}, function(err, products) {
+      Product.find({owner:req.session.activeuser._id}, function(err, products) {
           if (err) throw err;
       res.render('dashboard', {
           title: 'Advocate | Dashboard',
@@ -37,6 +37,7 @@ router.post('/', function (req,res,next){
                 companyID:req.body.companyID,
                 deviceType: req.body.deviceType
             });
+            
             device.save((err,product)=>{
                 if(err){
                     return next(err);

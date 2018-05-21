@@ -32,7 +32,7 @@
                 <h1><%= username %></h1>
                 <% product.forEach(function (products) {    %>
                 <ul class="Items">
-                    <li class="listedItems" style="cursor: pointer;" onclick="give('<%= products.id %>','<%= products.deviceType %>')">
+                    <li id="listedItems" style="cursor: pointer;">
                         <h2><%= products.companyID%></h2>
                         <h3 class="take"><%= products.id %></h3>
                         <h4><%= products.deviceType %></h4>
