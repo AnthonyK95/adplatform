@@ -43,10 +43,7 @@ router.post('/', function (req,res,next){
                     return next(err);
                 }
                 else{
-                    //change this with active notification and product component show
-
-                    // replace this line with the embedded alert notification
-
+                    //Create the notification system
                 }
             });
         }

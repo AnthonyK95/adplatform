@@ -169,6 +169,7 @@ a:hover{
      border-radius: 3px;
      background-color: white;
      box-shadow: 0 0 2px 0 darkgrey;
+     overflow-y:scroll; 
  }
 
  #add_component{
@@ -259,12 +260,16 @@ outline-color:#f46841;
 #box{
     width: 100%;
     text-align: center;
+    
+   
+    
 }
 .Items{
     list-style-type: none;    
     
 }
 .Items #listedItems{
+    
     margin-right: 40px;
     border:1px solid lightgrey;
     border-radius:5px;
