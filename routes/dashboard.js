@@ -4,6 +4,31 @@ var mongoose = require('mongoose');
 var User = require('../dbSchemas/userAdvocate');
 var session = require('express-session');
 var Product = require('../dbSchemas/productAdvocate');
+var Contract = require('../dbSchemas/contractAdvocate');
+var fs = require('fs');
+
+
+
+
+function checking4contract(id){
+    console.log(id);
+    Contract.find({_id:id},function(err,contract){
+       if(err){
+           return next(err);
+       }
+       else{
+        contract.forEach(function (data) {
+            console.log(data._id);
+        });
+       }    
+
+    });
+}
+
+
+
+
+
 
 // Getting the Dashboard Page
 router.get('/', function(req, res, next) {
@@ -12,12 +37,20 @@ router.get('/', function(req, res, next) {
     }
     else{
       Product.find({owner:req.session.activeuser._id}, function(err, products) {
-          if (err) throw err;
+          if (err) {
+              return next(err)
+          }else{
+            products.forEach(function (data) {
+                checking4contract(data._id);
+            }); 
+          
       res.render('dashboard', {
           title: 'Advocate | Dashboard',
           username: req.session.activeuser.username,
           product:products
           });
+          
+        }
         });
     }
 });

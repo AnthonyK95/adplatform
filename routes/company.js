@@ -28,7 +28,6 @@ function writethefile(name,words){
 // Creating the new file for the needs of the user and company
 function jsonsyntax(words){
 
-
  var word = words;
  var inputData = ({
   "UpTime": "We are going to collect periodically data for the device uptime ",
