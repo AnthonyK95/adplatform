@@ -9,7 +9,7 @@ var fs = require('fs');
 
 
 
-
+// Checking the devices for pending contracts
 function checking4contract(id){
     console.log(id);
     Contract.find({_id:id},function(err,contract){
@@ -18,7 +18,12 @@ function checking4contract(id){
        }
        else{
         contract.forEach(function (data) {
+            if(data.confirmSign == "pending"){
             console.log(data._id);
+            }
+            else{
+                console.log('There was an error on loading Contracts');
+            }
         });
        }    
 
