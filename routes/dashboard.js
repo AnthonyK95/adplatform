@@ -8,56 +8,58 @@ var Contract = require('../dbSchemas/contractAdvocate');
 var fs = require('fs');
 
 
-
-// Checking the devices for pending contracts
-function checking4contract(id){
-    console.log(id);
-    Contract.find({_id:id},function(err,contract){
-       if(err){
-           return next(err);
-       }
-       else{
-        contract.forEach(function (data) {
-            if(data.confirmSign == "pending"){
-            console.log(data._id);
-            }
-            else{
-                console.log('There was an error on loading Contracts');
-            }
-        });
-       }    
-
-    });
-}
-
-
-
-
-
-
+// vGlobal Variable to send to render proccess
+var therapis = [];
 // Getting the Dashboard Page
 router.get('/', function(req, res, next) {
     if(!req.session.activeuser){
         return res.status(401).redirect('/');
     }
+  
     else{
-      Product.find({owner:req.session.activeuser._id}, function(err, products) {
+        
+    Product.find({owner:req.session.activeuser._id}, function(err, products) {
           if (err) {
               return next(err)
           }else{
             products.forEach(function (data) {
-                checking4contract(data._id);
+                // checking4contract(data._id);
+                // Begining of the contract checking
+                Contract.find({_id:data._id},function(err,contract){
+                    if(err){
+                        return next(err);
+                    }
+                    else{
+                       
+                        contract.forEach(function (data) {
+                            
+                            if(data.confirmSign == "pending"){
+                                
+                                // Sending the data back to the global scope
+                                console.log(data._id)
+                                
+                                therapis.push(data._id);
+                                
+                            }
+                        });
+                    }
+                });
             }); 
-          
-      res.render('dashboard', {
-          title: 'Advocate | Dashboard',
-          username: req.session.activeuser.username,
-          product:products
-          });
-          
-        }
-        });
-    }
+                // Rendering proccess of the Dashboard Page
+                        res.render('dashboard', {
+                            title: 'Advocate | Dashboard',
+                            username: req.session.activeuser.username,
+                            contract:therapis,
+                            product:products
+                            
+                            
+
+
+                                          
+                    }); 
+                  }
+             });
+          }
 });
 
 // Post new devices to dashboard
