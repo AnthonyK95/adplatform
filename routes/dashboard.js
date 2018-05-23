@@ -35,7 +35,7 @@ router.get('/', function(req, res, next) {
                     else{
                       
 
-                            
+                            //TODO: Fix the Contract Listing 
                         contract.forEach(function (data) {
                            
                             if(data.confirmSign == "pending"){

@@ -22,12 +22,12 @@ router.get('/:contractID', function(req, res, next) {
             if(err){}
             else{
                 var data = JSON.parse(data);
-                console.log(data);
+                console.log(data.AdvocatePrivacyReview[0].Company);
             }
         })
         
 
-        // Rendering the process with the contact
+         // Rendering the process with the contact
         res.render('datatodiv', {
             title: 'Advocate | Contract Info',
             deviceID: deviceID
