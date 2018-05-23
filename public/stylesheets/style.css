@@ -158,6 +158,15 @@ a:hover{
     margin-right: 10px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
  }
+ nav ul #gooright{
+    margin-top: -11px;
+    float: right;
+    font-size: 20px;
+    color: white;
+    z-index: 1;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ 
+ }
  #Components{
      border:1px solid lightgrey;
      margin-top: 40px;
@@ -182,11 +191,12 @@ a:hover{
     outline:none;
     color: white;
     transition: .3s ease-in-out;
-    margin-top: 100px;
+    margin-top: 50px;
     float: left;
     box-shadow: 0 0 2px 0 black;
     margin-left: 5px;
     margin-bottom: 5px;
+  
  }
 
  /* The Creation of add component */

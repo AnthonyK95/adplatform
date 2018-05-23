@@ -19,6 +19,8 @@ var companyDashboard = require('./routes/company');
 // Requiring the Mongodb package
 var mongoose = require('mongoose');
 
+// Sending data to div
+var datatodiv = require('./routes/datatodiv')
 
 var app = express();
 
@@ -47,6 +49,7 @@ app.use('/registration',registerRoute);
 app.use('/login',loginRoute);
 app.use('/dashboard',mainappRoute);
 app.use('/company',companyDashboard);
+app.use('/content',datatodiv);
 
 
 // Handle the logout session part

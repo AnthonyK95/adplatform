@@ -8,16 +8,17 @@ var Contract = require('../dbSchemas/contractAdvocate');
 var fs = require('fs');
 
 
-// vGlobal Variable to send to render proccess
-var therapis = [];
+// Global Variable to send to render proccess
+var therapis = [];   
 // Getting the Dashboard Page
 router.get('/', function(req, res, next) {
     if(!req.session.activeuser){
         return res.status(401).redirect('/');
     }
   
-    else{
+    else{ 
         
+
     Product.find({owner:req.session.activeuser._id}, function(err, products) {
           if (err) {
               return next(err)
@@ -25,24 +26,27 @@ router.get('/', function(req, res, next) {
             products.forEach(function (data) {
                 // checking4contract(data._id);
                 // Begining of the contract checking
+                
                 Contract.find({_id:data._id},function(err,contract){
+                    
                     if(err){
                         return next(err);
                     }
                     else{
-                       
-                        contract.forEach(function (data) {
+                      
+
                             
+                        contract.forEach(function (data) {
+                           
                             if(data.confirmSign == "pending"){
-                                
-                                // Sending the data back to the global scope
-                                console.log(data._id)
-                                
-                                therapis.push(data._id);
-                                
-                            }
+                                      therapis.push(data._id)
+                                      console.log(therapis)
+                                }
+                           
                         });
+                   
                     }
+                    
                 });
             }); 
                 // Rendering proccess of the Dashboard Page
@@ -51,11 +55,6 @@ router.get('/', function(req, res, next) {
                             username: req.session.activeuser.username,
                             contract:therapis,
                             product:products
-                            
-                            
-
-
-                                          
                     }); 
                   }
              });

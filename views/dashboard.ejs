@@ -10,7 +10,7 @@
     <title><%= title %></title>
     <style>
         .dropbtn {
-            background-color: #3498DB;
+            background-color: #f46841;
             color: white;
             padding: 16px;
             font-size: 16px;
@@ -19,7 +19,9 @@
         }
         
         .dropbtn:hover, .dropbtn:focus {
-            background-color: #2980B9;
+            background-color: #ffffff;
+            border-radius:5px;
+            color: black;
         }
         
         .dropdown {
@@ -35,6 +37,8 @@
             overflow: auto;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
+            float: right;
+            right: 200px;
         }
         
         .dropdown-content a {
@@ -58,21 +62,22 @@
                 <li onClick="window.location.reload()" style="cursor:pointer;">Advocate Platform</li>
                 <li class="goright"><a href="logout">Sign Out</a></li>
                 <li class="gooright"><%= username %></li>
+                <li> <div class="dropdown" id="gooright">
+                    <button onclick="Contracts()" class="dropbtn">Dropdown</button>
+                    </div></li>
             </ul>
         </div>
     </nav>
-    <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-          <div id="myDropdown" class="dropdown-content">
-              <h1 style="text-align: center;">Pending Contracts</h1>
-              <% contract.forEach(function (products) {    %>
-                <ul class="Items">
-                    <li id="listedItems" style="cursor: pointer;" onclick="openContract('<%= products %>')">
-                        <h2><%= products%></h2>                 
-                </ul>
-                <% }) %>
-          </div>
-        </div>
+    <!-- Inside Dropdown Menu -->
+    <div id="contract-button" class="dropdown-content">
+        <h1 style="text-align: center;">Pending Contracts</h1>
+        <% contract.forEach(function (products) {    %>
+          <ul class="Items">
+              <li id="listedItems" style="cursor: pointer;" onclick="openContract('<%= products %>')">
+                  <h2><%= products%></h2>                 
+          </ul>
+          <% }) %>
+    </div>
     <section id="side-menu">
         <div class="container">
             <input type="button" id="add_component" name="add_component" value="Add Device">
@@ -88,35 +93,13 @@
                     <li id="listedItems" style="cursor: pointer;">
                         <h2><%= products.companyID%></h2>
                         <h3 class="take"><%= products.id %></h3>
-                        <h4><%= products.deviceType %></h4></li>
-                        
+                        <h4><%= products.deviceType %></h4></li>          
                 </ul>
                 <% }) %>
             </div>
         </div>
     </section>
-    <script>
-        /* When the user clicks on the button, 
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-        
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(event) {
-          if (!event.target.matches('.dropbtn')) {
-        
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-              var openDropdown = dropdowns[i];
-              if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-              }
-            }
-          }
-        }
-        </script>
+    
     <!-- Static Files -->
    <script src="/js/addbox.js"></script>
    <script src="/js/displayContracts.js"></script>
