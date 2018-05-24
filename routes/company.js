@@ -31,10 +31,10 @@ function jsonsyntax(words){
  var word = words;
  var inputData = ({
   "UpTime": "We are going to collect periodically data for the device uptime ",
-  "Firmware": "We are going to collect periodically data devices firmware"
+  "Firmware": "We are going to collect periodically data about device firmware"
  })
 //  Final Appending the 
- words["Company Agreement"] = inputData;
+ words["CompanyAgreement"] = inputData;
 }
 
 

@@ -2,11 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title><%= title%></title>
 </head>
 <body>
-    <%= deviceID%>
+     <!-- Creating the navigation of the website -->
+         <nav>
+            <div class="container">
+                <ul>
+                    <li onClick="window.location.reload()" style="cursor:pointer;">Advocate Platform</li>
+                    <li class="goright"><a href="/logout">Sign Out</a></li>
+                    <li class="gooright"><%= username %></li>
+                </ul>
+            </div>
+         </nav>
+   <section id="Components">
+        <div class="container">
+            <h1 style="margin-top:50px;font-size: 30px;">Pending Contract for <%= deviceID%></h1>
+            <h1 style="font-size: 20px;">Company Wants this data from your device</h1>
+            <form action="/content/<%= deviceID%>" method="POST">
+
+
+            <div id="box" style="margin-top: 10vh;">
+              <input type="checkbox" name="uptime" value="Agreed" id="a">
+              <label style="font-size: 20px;"><%= uptime %></label>
+            </div>
+            <div id="box" style="margin-top:10px;">
+                    <input type="checkbox" name="firmware" value="Agreed" id="a" >
+                    <label  style="font-size: 20px;"><%= firmware %></label>
+            </div>
+        </div>
+        <input type="submit" class="create" name="submit" value="Accept Contract" style="margin-top: 40px;">
+    </form>
+    </section>
+
+
+        
+
+  
 </body>
 </html>

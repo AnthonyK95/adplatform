@@ -31,12 +31,12 @@ a:hover{
       border-radius: 4px;
       border:1px;
       margin-top:20px;
-      outline-color:#f46841;
+      outline-color:#2e3138;
 }
 .create{
       width: 250px;
       height: 45px;
-      background-color: #f46841;
+      background-color:#2e3138;
       border:1px;
       border-radius: 4px;
       cursor: pointer;
@@ -67,7 +67,7 @@ a:hover{
 .register{
     width: 250px;
     height: 50px;
-    background-color: #f46841;
+    background-color: #2e3138;
     cursor: pointer;
     border: 1px;
     border-radius:5px;
@@ -79,7 +79,7 @@ a:hover{
     outline: none;
     width: 250px;
     height: 50px;
-    background-color: #f46841;
+    background-color: #2e3138;
     border: 1px;
     color: white;
     border-radius:5px;
@@ -96,7 +96,7 @@ a:hover{
     text-align:center;
 }
 #error-webapp h1 {
-    color: #f46841;
+    color: #1d1f23;
     margin-top: 50px;
     font-size: 40px;
 }
@@ -105,7 +105,7 @@ a:hover{
     font-size: 17px;
     margin-top: -15px;
 }#notes{
-     color: #f46841;
+     color: #1d1f23;
      margin-top: -170px;
      border:1px solid #d3d3d3;
      width:40%;
@@ -129,7 +129,7 @@ a:hover{
  nav{
      width: 100%;
      min-height: 50px;
-     background-color:#f46841; 
+     background-color:#2e3138; 
      box-shadow:0 0 3px 0 black;
  }
  nav ul{
@@ -184,7 +184,7 @@ a:hover{
  #add_component{
     width: 150px;
     height: 45px;
-    background-color: #f46841;
+    background-color: #2e3138;
     border:1px;
     border-radius: 4px;
     cursor: pointer;
@@ -222,7 +222,7 @@ color: grey;
 border-radius: 4px;
 border:1px;
 margin-top:20px;
-outline-color:#f46841;
+outline-color:#2e3138;
 }
 .pop_contract_content{
     background-color: #fefefe;

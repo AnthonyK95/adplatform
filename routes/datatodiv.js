@@ -17,34 +17,68 @@ router.get('/:contractID', function(req, res, next) {
     else{
 
         // Getting the Contract
-        var deviceID = req.params.contractID;        
+        var deviceID = req.params.contractID;  
+        
         fs.readFile('./request/'+deviceID+'.json',(err,data)=>{
-            if(err){}
+            if(err){
+                return next(err)
+            }
             else{
-                var data = JSON.parse(data);
-                console.log(data.AdvocatePrivacyReview[0].Company);
+                var data= JSON.parse(data);
+                var uptime   = data.CompanyAgreement.UpTime;
+                var firmware = data.CompanyAgreement.Firmware;
+                  // Rendering the process with the contact
+                    res.render('datatodiv', {
+                        title: 'Advocate | Contract Info',
+                        deviceID: deviceID,
+                        username:req.session.activeuser.username,
+                        uptime:uptime,
+                        firmware: firmware
+                    }); 
             }
         })
-        
-
-         // Rendering the process with the contact
-        res.render('datatodiv', {
-            title: 'Advocate | Contract Info',
-            deviceID: deviceID
-        }); 
     }
-    
 });
 
 
+
+
 //Getting the Company Dashboard
-router.post('/', function(req, res, next) {
+router.post('/:contractID', function(req, res, next) {
     if(!req.session.activeuser){
        res.redirect('/')
     }
     else{
-        res.send('Sending Data To BlockChain');
-    }
+        var deviceID = req.params.contractID;  
+        var uptime = req.body.uptime
+        var firmware = req.body.firmware
+        if(uptime == undefined){uptime = "Disagree"  }
+        if(firmware == undefined){ firmware = "Disagree"}
+        fs.readFile('./request/'+deviceID+'.json',(err,data)=>{
+            if(err){
+                return next(err)
+            }
+            else{
+        var userConsent = ({
+            UpTime:"the user with device id " + deviceID +" has " + uptime,
+            Firmware:"the user with device id " + deviceID+" has " + firmware,
+        })
+        var file = fs.readFileSync('./request/'+deviceID+'.json');
+        var Jfile = JSON.parse(file);
+        Jfile["ClientAgreement"] = userConsent;
+        var thedata = JSON.stringify(Jfile);
+      
+        // Saving the final contract to server and update the database with final appending
+        fs.writeFile("./request/"+deviceID+".json",thedata,(err,finaldata)=>{
+            if(err){return next(err)}
+            else{
+                // Updating the databas
+                Contract.updateOne()
+                }
+              })  
+            }
+        })    
+     }
 });
 
 
