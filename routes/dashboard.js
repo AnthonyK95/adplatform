@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
     }
   
     else{ 
-  
+        therapis = []
     Product.find({owner:req.session.activeuser._id}, async(err, products) => {
           if (err) {
               return next(err)
@@ -26,13 +26,14 @@ router.get('/', function(req, res, next) {
              products.forEach( (data) =>{
              thedata = data;
             }); 
+            
             await Contract.find({_id:thedata._id},async(err,contract)=>{
                     
                 if(err){
                     return next(err);
                 }
                 else{
-                        //TODO: Fix the Contract Listing 
+                     
                   await contract.forEach(function (data) {                          
                         if(data.confirmSign == "pending"){
                                   therapis.push(data._id)
