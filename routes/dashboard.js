@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
              products.forEach( (data) =>{
              thedata = data;
             }); 
-            
+            // Waiting the asychronous call 
             await Contract.find({_id:thedata._id},async(err,contract)=>{
                     
                 if(err){
@@ -42,11 +42,8 @@ router.get('/', function(req, res, next) {
                             else{
                                 therapis = []
                             }
-                       
-                    });
-               
-                }
-                
+                    });      
+                }              
             }); 
                 // Rendering proccess of the Dashboard Page
                         res.render('dashboard', {
