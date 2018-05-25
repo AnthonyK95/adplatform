@@ -46,8 +46,6 @@ router.post('/', function(req,res,next){
                         req.session.activeuser = user;
                         res.redirect('/company');
                     }
-
-
                 }
            });
          }

@@ -72,8 +72,13 @@ router.post('/:contractID', function(req, res, next) {
         fs.writeFile("./request/"+deviceID+".json",thedata,(err,finaldata)=>{
             if(err){return next(err)}
             else{
-                // Updating the databas
-                Contract.updateOne()
+                    // Updating the database
+                    Contract.findOneAndUpdate({ _id: deviceID }, { confirmSign: 'Confirmed' }, function(err, finalContract) {
+                        if (err) throw err;
+                        // After Updating the Contract Return The Json for verification
+                        res.redirect("/dashboard");
+                        console.log(finalContract);
+                      });
                 }
               })  
             }

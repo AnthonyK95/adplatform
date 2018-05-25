@@ -18,7 +18,8 @@ router.get('/', function(req, res, next) {
   
     else{ 
         
-
+    if(therapis !== 0){console.log(therapis)}
+    else{ therapis =[]}
     Product.find({owner:req.session.activeuser._id}, function(err, products) {
           if (err) {
               return next(err)
@@ -33,14 +34,14 @@ router.get('/', function(req, res, next) {
                         return next(err);
                     }
                     else{
-                      
-
                             //TODO: Fix the Contract Listing 
-                        contract.forEach(function (data) {
-                           
+                        contract.forEach(function (data) {                          
                             if(data.confirmSign == "pending"){
                                       therapis.push(data._id)
                                       console.log(therapis)
+                                }
+                                else{
+                                    therapis = []
                                 }
                            
                         });
