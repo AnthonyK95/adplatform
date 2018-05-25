@@ -9,7 +9,8 @@ var fs = require('fs');
 
 
 // Global Variable to send to render proccess
-var therapis = [];   
+var therapis = [];  
+var thedata; 
 // Getting the Dashboard Page
 router.get('/', function(req, res, next) {
     if(!req.session.activeuser){
@@ -17,38 +18,34 @@ router.get('/', function(req, res, next) {
     }
   
     else{ 
-        
-    if(therapis !== 0){console.log(therapis)}
-    else{ therapis =[]}
-    Product.find({owner:req.session.activeuser._id}, function(err, products) {
+  
+    Product.find({owner:req.session.activeuser._id}, async(err, products) => {
           if (err) {
               return next(err)
           }else{
-            products.forEach(function (data) {
-                // checking4contract(data._id);
-                // Begining of the contract checking
+             products.forEach( (data) =>{
+             thedata = data;
+            }); 
+            await Contract.find({_id:thedata._id},async(err,contract)=>{
+                    
+                if(err){
+                    return next(err);
+                }
+                else{
+                        //TODO: Fix the Contract Listing 
+                  await contract.forEach(function (data) {                          
+                        if(data.confirmSign == "pending"){
+                                  therapis.push(data._id)
+                                  console.log(therapis)
+                            }
+                            else{
+                                therapis = []
+                            }
+                       
+                    });
+               
+                }
                 
-                Contract.find({_id:data._id},function(err,contract){
-                    
-                    if(err){
-                        return next(err);
-                    }
-                    else{
-                            //TODO: Fix the Contract Listing 
-                        contract.forEach(function (data) {                          
-                            if(data.confirmSign == "pending"){
-                                      therapis.push(data._id)
-                                      console.log(therapis)
-                                }
-                                else{
-                                    therapis = []
-                                }
-                           
-                        });
-                   
-                    }
-                    
-                });
             }); 
                 // Rendering proccess of the Dashboard Page
                         res.render('dashboard', {
