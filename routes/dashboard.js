@@ -78,7 +78,7 @@ router.post('/', function (req,res,next){
                     return next(err);
                 }
                 else{
-                    //Create the notification system
+                    res.redirect('/dashboard');
                 }
             });
         }

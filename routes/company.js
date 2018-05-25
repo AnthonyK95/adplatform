@@ -95,7 +95,8 @@ router.post('/',function(req,res,next){
             var data = fs.readFileSync('thecontract.json');
             var words = JSON.parse(data);
             console.log(words);
-            writethefile(contract._id,words);         
+            writethefile(contract._id,words);
+            res.redirect('/company');
           }
         });
         
