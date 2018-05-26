@@ -22,6 +22,7 @@ function addcomponentmodal(){
     var deviceID = document.createElement("INPUT");
     deviceID.setAttribute("type","text"); 
     deviceID.setAttribute("placeholder","Serial Number");
+    deviceID.setAttribute("autocomplete","off");
     deviceID.className = "text";
     deviceID.name = "deviceID";
 
@@ -29,6 +30,7 @@ function addcomponentmodal(){
     var companyID = document.createElement("INPUT");
     companyID.setAttribute("type","text");
     companyID.setAttribute("placeholder","Company");
+    companyID.setAttribute("autocomplete","off");
     companyID.className = "text";
     companyID.name = "companyID";
 
@@ -36,6 +38,7 @@ function addcomponentmodal(){
     var deviceType = document.createElement("INPUT");
     deviceType.setAttribute("type","text");
     deviceType.setAttribute("placeholder","Device Type");
+    deviceType.setAttribute("autocomplete","off");
     deviceType.className = "text";
     deviceType.name = "deviceType";
 
