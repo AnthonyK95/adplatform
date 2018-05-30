@@ -23,6 +23,7 @@ function addcomponentmodal(){
     deviceID.setAttribute("type","text"); 
     deviceID.setAttribute("autocomplete","off")
     deviceID.setAttribute("placeholder","Serial Number");
+    deviceID.setAttribute("autocomplete","off");
     deviceID.className = "text";
     deviceID.name = "deviceID";
 
@@ -31,6 +32,7 @@ function addcomponentmodal(){
     companyID.setAttribute("type","text");
     companyID.setAttribute("autocomplete","off")
     companyID.setAttribute("placeholder","Company");
+    companyID.setAttribute("autocomplete","off");
     companyID.className = "text";
     companyID.name = "companyID";
 
@@ -39,6 +41,7 @@ function addcomponentmodal(){
     deviceType.setAttribute("type","text");
     deviceType.setAttribute("autocomplete","off")
     deviceType.setAttribute("placeholder","Device Type");
+    deviceType.setAttribute("autocomplete","off");
     deviceType.className = "text";
     deviceType.name = "deviceType";
 
