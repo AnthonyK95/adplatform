@@ -16,6 +16,7 @@ var loginRoute = require ('./routes/login');
 var mainappRoute = require('./routes/dashboard');
 //Adding the Company Route
 var companyDashboard = require('./routes/company');
+
 // Requiring the Mongodb package
 var mongoose = require('mongoose');
 
@@ -50,6 +51,7 @@ app.use('/login',loginRoute);
 app.use('/dashboard',mainappRoute);
 app.use('/company',companyDashboard);
 app.use('/content',datatodiv);
+
 
 
 // Handle the logout session part

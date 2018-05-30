@@ -21,6 +21,7 @@ function addcomponentmodal(){
     // Creating the text field for the Component Serial Number
     var deviceID = document.createElement("INPUT");
     deviceID.setAttribute("type","text"); 
+    deviceID.setAttribute("autocomplete","off")
     deviceID.setAttribute("placeholder","Serial Number");
     deviceID.className = "text";
     deviceID.name = "deviceID";
@@ -28,6 +29,7 @@ function addcomponentmodal(){
     // Creating the company choice field
     var companyID = document.createElement("INPUT");
     companyID.setAttribute("type","text");
+    companyID.setAttribute("autocomplete","off")
     companyID.setAttribute("placeholder","Company");
     companyID.className = "text";
     companyID.name = "companyID";
@@ -35,6 +37,7 @@ function addcomponentmodal(){
     // Creating the Device Type Choice field
     var deviceType = document.createElement("INPUT");
     deviceType.setAttribute("type","text");
+    deviceType.setAttribute("autocomplete","off")
     deviceType.setAttribute("placeholder","Device Type");
     deviceType.className = "text";
     deviceType.name = "deviceType";

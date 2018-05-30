@@ -9,52 +9,56 @@ var fs = require('fs');
 
 
 // Global Variable to send to render proccess
-var therapis = [];  
-var thedata; 
+var therapis = [];
+var thedata;
+
 // Getting the Dashboard Page
 router.get('/', function(req, res, next) {
     if(!req.session.activeuser){
         return res.status(401).redirect('/');
     }
-  
-    else{ 
-        therapis = []
+
+    else{
+        therapis = [] //Clean the array
     Product.find({owner:req.session.activeuser._id}, async(err, products) => {
           if (err) {
               return next(err)
           }else{
+
              products.forEach( (data) =>{
-             thedata = data;
-            }); 
-            // Waiting the asychronous call 
+                thedata = data;
+            });
+            // Waiting the asychronous call
             await Contract.find({_id:thedata._id},async(err,contract)=>{
-                    
+
                 if(err){
                     return next(err);
                 }
                 else{
-                     
-                  await contract.forEach(function (data) {                          
-                        if(data.confirmSign == "pending"){
+
+                  await contract.forEach(function (data) {
+                        if(data.Status == "pending"){
                                   therapis.push(data._id)
                                   console.log(therapis)
                             }
                             else{
                                 therapis = []
                             }
-                    });      
-                }              
-            }); 
+                    });
+                }
+            });
                 // Rendering proccess of the Dashboard Page
                         res.render('dashboard', {
                             title: 'Advocate | Dashboard',
                             username: req.session.activeuser.username,
                             contract:therapis,
                             product:products
-                    }); 
+                    });
                   }
+
              });
           }
+
 });
 
 // Post new devices to dashboard
@@ -72,7 +76,7 @@ router.post('/', function (req,res,next){
                 companyID:req.body.companyID,
                 deviceType: req.body.deviceType
             });
-            
+
             device.save((err,product)=>{
                 if(err){
                     return next(err);

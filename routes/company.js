@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var User = require('../dbSchemas/userAdvocate');
 var session = require('express-session');
 var Product = require('../dbSchemas/productAdvocate');
-// Getting the Scheme Contract 
+// Getting the Scheme Contract
 var Contract  = require('../dbSchemas/contractAdvocate');
 var fs = require('fs');
 
@@ -33,7 +33,7 @@ function jsonsyntax(words){
   "UpTime": "We are going to collect periodically data for the device uptime ",
   "Firmware": "We are going to collect periodically data about device firmware"
  })
-//  Final Appending the 
+//  Final Appending the agreement of the Company
  words["CompanyAgreement"] = inputData;
 }
 
@@ -41,17 +41,17 @@ function jsonsyntax(words){
 
 //Getting the Company Dashboard
 router.get('/', function(req, res, next) {
-  
+
     if(!req.session.activeuser){
         return res.status(401).redirect('/');
     }
     else{
-      
+
         //  add the query for the Companny ID
         Product.find({companyID:req.session.activeuser.username}, function(err, products) {
             if (err) throw err;
-            
-           
+
+
             // Rendering the template of te website
             res.render('company',{
                 title:"Advocate | Company Tools",
@@ -59,7 +59,7 @@ router.get('/', function(req, res, next) {
                 // Passing the values to a product variable
                 product: products
             });
-           
+
         });
     }
 
@@ -81,7 +81,7 @@ router.post('/',function(req,res,next){
         const contract = new Contract({
             _id: deviceID,
             company:companyName,
-            deviceID:deviceID,
+            deviceID:deviceID, // The Input Device Serial Key
             deviceType:deviceType,
             confirmSign: "pending"
         });
@@ -99,7 +99,7 @@ router.post('/',function(req,res,next){
             res.redirect('/company');
           }
         });
-        
+
       }
       else{
         console.log("there was an error");

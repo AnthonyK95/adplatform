@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 
+// Contract Schema
 var contractSchema = new mongoose.Schema ({
   _id:String,
   company:String,
   deviceID:String,
   deviceType:String,
-  confirmSign:String
+  Status:String
 });
 
 var Contract = mongoose.model('Contract',contractSchema);
