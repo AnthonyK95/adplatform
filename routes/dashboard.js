@@ -8,7 +8,7 @@ var Contract = require('../dbSchemas/contractAdvocate');
 var fs = require('fs');
 
 
-// Global Variable to send to render proccess
+// Global Variable to send to render process
 var therapis = [];
 var thedata;
 
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
     }
 
     else{
-        therapis = [] //Clean the array
+        therapis = []; //Clean the array
     Product.find({owner:req.session.activeuser._id}, async(err, products) => {
           if (err) {
               return next(err)
@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
              products.forEach( (data) =>{
                 thedata = data;
             });
-            // Waiting the asychronous call
+            // Waiting the asynchronous call
             await Contract.find({_id:thedata._id},async(err,contract)=>{
 
                 if(err){
@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
 
                   await contract.forEach(function (data) {
                         if(data.Status == "pending"){
-                                  therapis.push(data._id)
+                                  therapis.push(data._id);
                                   console.log(therapis)
                             }
                             else{
@@ -47,7 +47,7 @@ router.get('/', function(req, res, next) {
                     });
                 }
             });
-                // Rendering proccess of the Dashboard Page
+                // Rendering process of the Dashboard Page
                         res.render('dashboard', {
                             title: 'Advocate | Dashboard',
                             username: req.session.activeuser.username,

@@ -10,35 +10,6 @@ var fs = require('fs');
 
 
 
-// Creating the file on the server
-function writethefile(name,words){
-  // Creating the NEW JSON FILE
-  jsonsyntax(words);
-  var data = JSON.stringify(words);
-
-  fs.writeFile("./request/"+name+".json",data,(err)=>{
-    if(err){
-      console.log("There Was An Error");
-    }
-    else{
-      console.log("Json File Was Created Correctly");
-    }
-  })
-}
-// Creating the new file for the needs of the user and company
-function jsonsyntax(words){
-
- var word = words;
- var inputData = ({
-  "UpTime": "We are going to collect periodically data for the device uptime ",
-  "Firmware": "We are going to collect periodically data about device firmware"
- })
-//  Final Appending the agreement of the Company
- words["CompanyAgreement"] = inputData;
-}
-
-
-
 //Getting the Company Dashboard
 router.get('/', function(req, res, next) {
 
@@ -73,17 +44,51 @@ router.post('/',function(req,res,next){
     else{
       if(req.body.deviceID&&req.body.deviceType){
         // Getting the data for the device contract
-        var deviceID = req.body.deviceID;
-        var deviceType = req.body.deviceType;
-        var companyName = req.session.activeuser._id;
+          var  deviceID = req.body.deviceID;
+          var deviceType = req.body.deviceType;
+          var  companyName = req.session.activeuser._id;
 
-        // Creating the temporary contract
+
+          //Getting variables from requested Contract(JSON FORMAT)
+          var data = fs.readFileSync('thecontract.json');
+          var words = JSON.parse(data);
+          var dataRequestOne = words.Object_One;
+          var dataRequestTwo = words.Object_Two;
+          var Time_Period = words.Time_Period;
+          var Purposes = words.Purposes;
+          var Third_Parties = words.Third_Parties;
+          var Third_Countries = words.Third_Countries;
+          var Automated_Processing = words.Automated_Processing;
+          var Profiling = words.Profiling;
+          var Manual_Process = words.Manual_Process;
+
+
+
+          console.log(dataRequestOne,dataRequestTwo);
+
+
+
+
+
+
+        // Creating the Requested Contract
         const contract = new Contract({
             _id: deviceID,
-            company:companyName,
-            deviceID:deviceID, // The Input Device Serial Key
+            company:companyName, // Getting the ID of Company
+            deviceID:deviceID,  // The Input Device Serial Key
             deviceType:deviceType,
-            confirmSign: "pending"
+            Status: "pending",
+            Data:dataRequestOne,
+            Time_Period:Time_Period,
+            Purposes:Purposes,
+            Third_Parties:Third_Parties,
+            Third_Countries:Third_Countries,
+            Company_Signature:"123",
+            Client_Signature:"123",
+            ID_Transaction:"123",
+            Automated_Processing:true,
+            Profiling:false,
+            Manual_Process:false
         });
 
         contract.save((err,contractfile)=>{
@@ -91,11 +96,6 @@ router.post('/',function(req,res,next){
             return next(err);
           }
           else{
-            // Taking the json file
-            var data = fs.readFileSync('thecontract.json');
-            var words = JSON.parse(data);
-            console.log(words);
-            writethefile(contract._id,words);
             res.redirect('/company');
           }
         });

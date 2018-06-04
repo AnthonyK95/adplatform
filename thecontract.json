@@ -1,11 +1,12 @@
 {
-        "AdvocatePrivacyReview":
-         [
-             {
-                 "Company": "Company Should agree that the user may decline some of the contract statements",
-                 "Client": "Client Should acknowledge that "
-             }
-         ]
-      
-    }
+  "Object_One":"Pulse data will be collected periodically",
+  "Object_Two":"Location data will be collected periodically",
+  "Time_Period":"123",
+  "Purposes":"123",
+  "Third_Parties":"123",
+  "Third_Countries":"123",
+  "Automated_Processing":true,
+  "Profiling":false,
+  "Manual_Process":true
+}
     

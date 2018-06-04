@@ -1,13 +1,26 @@
 var mongoose = require('mongoose');
 
-// Contract Schema
+// Rebuilding Contract Schema
 var contractSchema = new mongoose.Schema ({
-  _id:String,
-  company:String,
-  deviceID:String,
-  deviceType:String,
-  Status:String
+    _id:String,
+    company:String,
+    deviceID:String,
+    deviceType:String,
+    Status:String,
+    Data:String,
+    Time_Period:String,
+    Purposes:String,
+    Third_Parties:String,
+    Third_Countries:String,
+    Company_Signature:String,
+    Response:String,
+    Client_Signature:String,
+    ID_Transaction:String,
+    Automated_Processing:Boolean,
+    Profiling:Boolean,
+    Manual_Process:Boolean
 });
+
 
 var Contract = mongoose.model('Contract',contractSchema);
 module.exports = Contract;

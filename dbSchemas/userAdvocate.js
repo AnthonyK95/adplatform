@@ -9,5 +9,5 @@ var userSchema = new mongoose.Schema({
     password: String
 });
     //Export the user model to the project
-    var User = mongoose.model('User', userSchema);
-    module.exports = User;
+var User = mongoose.model('User', userSchema);
+module.exports = User;
