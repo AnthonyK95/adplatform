@@ -34,7 +34,13 @@ router.get('/', function(req, res, next) {
             console.log(deviceDI);
            await Contract.find({_id:deviceDI},async (err,data) =>{
                await data.forEach((thedata)=>{
-                 therapis.push(thedata._id);
+                   if (thedata.Status == "pending"){
+                       therapis.push(thedata._id);
+                   }
+                   else{
+                       therapis = [];
+                   }
+
                })
             });
            console.log(therapis);
