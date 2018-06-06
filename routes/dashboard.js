@@ -9,55 +9,45 @@ var fs = require('fs');
 
 
 // Global Variable to send to render process
-var therapis = [];
-var thedata;
 
+
+var therapis = [];
+var deviceDI  = [];
 // Getting the Dashboard Page
 router.get('/', function(req, res, next) {
+
     if(!req.session.activeuser){
         return res.status(401).redirect('/');
     }
 
     else{
-        therapis = []; //Clean the array
-    Product.find({owner:req.session.activeuser._id}, async(err, products) => {
-          if (err) {
-              return next(err)
-          }else{
-
-             products.forEach( (data) =>{
-                thedata = data;
+        therapis = [];
+        deviceDI = [];
+        //  add the query for the Company ID
+        Product.find({owner:req.session.activeuser._id}, async(err, products) =>{
+            if (err) throw err;
+            else{
+               await products.forEach((data)=> {
+                    deviceDI.push (data._id);
+               });
+            }
+            console.log(deviceDI);
+           await Contract.find({_id:deviceDI},async (err,data) =>{
+               await data.forEach((thedata)=>{
+                 therapis.push(thedata._id);
+               })
             });
-            // Waiting the asynchronous call
-            await Contract.find({_id:thedata._id},async(err,contract)=>{
+           console.log(therapis);
+           //Rendering Process
+            res.render('dashboard',{
+                title:"Advocate | Dashboard Tools",
+                username:req.session.activeuser.username,
+                contract:therapis,
+                product:deviceDI
 
-                if(err){
-                    return next(err);
-                }
-                else{
-
-                  await contract.forEach(function (data) {
-                        if(data.Status == "pending"){
-                                  therapis.push(data._id);
-                                  console.log(therapis)
-                            }
-                            else{
-                                therapis = []
-                            }
-                    });
-                }
             });
-                // Rendering process of the Dashboard Page
-                        res.render('dashboard', {
-                            title: 'Advocate | Dashboard',
-                            username: req.session.activeuser.username,
-                            contract:therapis,
-                            product:products
-                    });
-                  }
-
-             });
-          }
+        });
+    }
 
 });
 

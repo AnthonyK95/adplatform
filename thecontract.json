@@ -4,9 +4,6 @@
   "Time_Period":"123",
   "Purposes":"123",
   "Third_Parties":"123",
-  "Third_Countries":"123",
-  "Automated_Processing":true,
-  "Profiling":false,
-  "Manual_Process":true
+  "Third_Countries":"123"
 }
     

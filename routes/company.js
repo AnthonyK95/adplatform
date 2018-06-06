@@ -45,7 +45,7 @@ router.post('/',function(req,res,next){
       if(req.body.deviceID&&req.body.deviceType){
         // Getting the data for the device contract
           var  deviceID = req.body.deviceID;
-          var deviceType = req.body.deviceType;
+          var  deviceType = req.body.deviceType;
           var  companyName = req.session.activeuser._id;
 
 
@@ -62,38 +62,28 @@ router.post('/',function(req,res,next){
           var Profiling = words.Profiling;
           var Manual_Process = words.Manual_Process;
 
-
-
           console.log(dataRequestOne,dataRequestTwo);
 
-
-
-
-
-
         // Creating the Requested Contract
-        const contract = new Contract({
+        var contract = new Contract({
             _id: deviceID,
             company:companyName, // Getting the ID of Company
-            deviceID:deviceID,  // The Input Device Serial Key
+            deviceID:deviceID,  // The Input Device Serial Key(auto generated)
             deviceType:deviceType,
             Status: "pending",
             Data:dataRequestOne,
-            Time_Period:Time_Period,
+            Time_Period:Date.now(),
             Purposes:Purposes,
             Third_Parties:Third_Parties,
             Third_Countries:Third_Countries,
-            Company_Signature:"123",
-            Client_Signature:"123",
-            ID_Transaction:"123",
-            Automated_Processing:true,
-            Profiling:false,
-            Manual_Process:false
+            Company_Signature:"1223",
+            Client_Signature:"1423",
+            ID_Transaction:"1213"
         });
 
         contract.save((err,contractfile)=>{
           if(err){
-            return next(err);
+            console.log(err);
           }
           else{
             res.redirect('/company');

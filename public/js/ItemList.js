@@ -84,7 +84,7 @@ function createtheContract(productid,productType){
        SignComponent.addEventListener('click',()=>{
            form.submit();
            componentbox.remove();
-       })
+       });
 
        window.onclick = (event) =>{
           if(event.target == componentbox) {
