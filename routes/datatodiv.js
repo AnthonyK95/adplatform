@@ -15,9 +15,9 @@ router.get('/:contractID', function(req, res, next) {
         res.redirect('/');
     }
     else{
-        //Getting information for the Contract
+        //Getting Contract ID
         var deviceID = req.params.contractID;
-
+        // Getting Information from the database
         Contract.find({_id:deviceID},'data -_id ',(err,datatodisplay)=>{
            var words= JSON.stringify(datatodisplay);
             console.log(words.data);
