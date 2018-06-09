@@ -53,7 +53,7 @@ router.post('/',function(req,res,next){
           var data = fs.readFileSync('thecontract.json');
           var words = JSON.parse(data);
 
-        //   Getting the values of the json file to variables for re-use purposes
+          // Getting the values of the json file to variables for re-use purposes
           var dataRequestOne = words.Object_One;
           var dataRequestTwo = words.Object_Two;
           var Time_Period = words.Time_Period;
@@ -84,8 +84,8 @@ router.post('/',function(req,res,next){
             Third_Countries:Third_Countries,
             Response:"",
             Company_Signature:Company_Signature,
-            Client_Signature:"1423",
-            ID_Transaction:"1213",
+            Client_Signature:"",
+            ID_Transaction:"",
             Automated_Processing:Automated_Processing,
             Profiling:Profiling,
             Manual_Process:Manual_Process
