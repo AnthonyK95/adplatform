@@ -7,7 +7,7 @@ var Product = require('../dbSchemas/productAdvocate');
 // Getting the Scheme Contract
 var Contract  = require('../dbSchemas/contractAdvocate');
 var fs = require('fs');
-var gethash = require('../routes/hash');
+var crypto = require('crypto');
 
 
 
@@ -71,9 +71,10 @@ router.post('/',function(req,res,next){
             // var Company_Signature = hash.digest('hex');
 
             //Calling the hash api
-             gethash.hash(tohash);
+            var hash = crypto.createHash('sha256').update(tohash).digest('hex');
+            var Company_Signature = hash;
           
-          console.log(Company_Signature);
+         
 
         // Creating the Requested Contract
         var contract = new Contract({
