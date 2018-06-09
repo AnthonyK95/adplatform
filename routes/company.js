@@ -7,6 +7,8 @@ var Product = require('../dbSchemas/productAdvocate');
 // Getting the Scheme Contract
 var Contract  = require('../dbSchemas/contractAdvocate');
 var fs = require('fs');
+var crypto = require("crypto");
+var hash = crypto.createHash("sha256");
 
 
 
@@ -30,10 +32,8 @@ router.get('/', function(req, res, next) {
                 // Passing the values to a product variable
                 product: products
             });
-
         });
     }
-
 });
 
 //Analyze the Contract of the company and present it to the user
@@ -52,6 +52,8 @@ router.post('/',function(req,res,next){
           //Getting variables from requested Contract(JSON FORMAT)
           var data = fs.readFileSync('thecontract.json');
           var words = JSON.parse(data);
+
+        //   Getting the values of the json file to variables for re-use purposes
           var dataRequestOne = words.Object_One;
           var dataRequestTwo = words.Object_Two;
           var Time_Period = words.Time_Period;
@@ -62,7 +64,11 @@ router.post('/',function(req,res,next){
           var Profiling = words.Profiling;
           var Manual_Process = words.Manual_Process;
 
-          console.log(dataRequestOne,dataRequestTwo);
+          //Creating the hash of the above items
+          var hello =dataRequestOne+dataRequestTwo+Time_Period+Purposes+Third_Parties+Third_Countries+Automated_Processing+Profiling+Manual_Process; 
+          hash.update(hello);
+          var Company_Signature = hash.digest('hex');
+          console.log(Company_Signature);
 
         // Creating the Requested Contract
         var contract = new Contract({
@@ -72,17 +78,17 @@ router.post('/',function(req,res,next){
             deviceType:deviceType,
             Status: "pending",
             Data:dataRequestOne,
-            Time_Period:Date.now(),
+            Time_Period:Time_Period,
             Purposes:Purposes,
             Third_Parties:Third_Parties,
             Third_Countries:Third_Countries,
             Response:"",
-            Company_Signature:"1223",
+            Company_Signature:Company_Signature,
             Client_Signature:"1423",
             ID_Transaction:"1213",
-            Automated_Processing:false,
-            Profiling:false,
-            Manual_Process:false
+            Automated_Processing:Automated_Processing,
+            Profiling:Profiling,
+            Manual_Process:Manual_Process
         });
 
         contract.save((err,contractfile)=>{
