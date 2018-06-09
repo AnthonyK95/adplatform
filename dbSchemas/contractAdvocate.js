@@ -7,9 +7,15 @@ var contractSchema = new mongoose.Schema ({
     deviceID:String,
     deviceType:String,
     Status:String,
-    Data:String,
+    Data:{
+        Data_Requested_One:String,
+        Data_Requested_Two:String
+    },
     Time_Period:String,
-    Purposes:String,
+    Purposes:{
+        Purposes_Requested_One:String,
+        Purposes_Requested_Two:String
+    },
     Third_Parties:String,
     Third_Countries:String,
     Company_Signature:String,

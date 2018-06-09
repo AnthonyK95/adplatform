@@ -7,8 +7,7 @@ var Product = require('../dbSchemas/productAdvocate');
 // Getting the Scheme Contract
 var Contract  = require('../dbSchemas/contractAdvocate');
 var fs = require('fs');
-var crypto = require("crypto");
-var hash = crypto.createHash("sha256");
+var gethash = require('../routes/hash');
 
 
 
@@ -36,6 +35,7 @@ router.get('/', function(req, res, next) {
     }
 });
 
+
 //Analyze the Contract of the company and present it to the user
 router.post('/',function(req,res,next){
     if(!req.session.activeuser){
@@ -57,7 +57,8 @@ router.post('/',function(req,res,next){
           var dataRequestOne = words.Object_One;
           var dataRequestTwo = words.Object_Two;
           var Time_Period = words.Time_Period;
-          var Purposes = words.Purposes;
+          var Purposes_One = words.Purposes_One;
+          var Purposes_Two = words.Purposes_Two;
           var Third_Parties = words.Third_Parties;
           var Third_Countries = words.Third_Countries;
           var Automated_Processing = words.Automated_Processing;
@@ -65,9 +66,13 @@ router.post('/',function(req,res,next){
           var Manual_Process = words.Manual_Process;
 
           //Creating the hash of the above items
-          var hello =dataRequestOne+dataRequestTwo+Time_Period+Purposes+Third_Parties+Third_Countries+Automated_Processing+Profiling+Manual_Process; 
-          hash.update(hello);
-          var Company_Signature = hash.digest('hex');
+          var tohash =deviceID+deviceType+companyName+dataRequestOne+dataRequestTwo+Time_Period+Purposes_One+Purposes_Two+Third_Parties+Third_Countries+Automated_Processing+Profiling+Manual_Process; 
+            // hash.update(hello);
+            // var Company_Signature = hash.digest('hex');
+
+            //Calling the hash api
+             gethash.hash(tohash);
+          
           console.log(Company_Signature);
 
         // Creating the Requested Contract
@@ -77,9 +82,15 @@ router.post('/',function(req,res,next){
             deviceID:deviceID,  // The Input Device Serial Key(auto generated)
             deviceType:deviceType,
             Status: "pending",
-            Data:dataRequestOne,
+            Data:{
+                Data_Requested_One:dataRequestOne,
+                Data_Requested_Two:dataRequestTwo
+            },
             Time_Period:Time_Period,
-            Purposes:Purposes,
+            Purposes:{
+                Purposes_Requested_One:Purposes_One,
+                Purposes_Requested_Two:Purposes_Two
+            },
             Third_Parties:Third_Parties,
             Third_Countries:Third_Countries,
             Response:"",
