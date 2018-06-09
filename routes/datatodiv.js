@@ -18,11 +18,7 @@ router.get('/:contractID', function(req, res, next) {
     else{
         //Getting Contract ID
         var deviceID = req.params.contractID;
-        // Getting Information from the database
-        Contract.find({_id:deviceID},'Data + Time_Period + Purposes + Third_Parties + Third_Countries -_id ',(err,datatodisplay)=>{
-           var words= JSON.stringify(datatodisplay);
-            console.log(words.data);
-
+        Contract.findOne({_id:deviceID},function(err,words) {
             res.render('datatodiv',{
                 title:"Advocate | Contract Information",
                 username:req.session.activeuser.username,
@@ -30,8 +26,6 @@ router.get('/:contractID', function(req, res, next) {
                 uptime:words
             });
         });
-
-
     }
 });
 
@@ -44,12 +38,28 @@ router.post('/:contractID', function(req, res, next) {
        res.redirect('/')
     }
     else{
-        var deviceID = req.params.contractID;  
-        var uptime = req.body.uptime;
-        if(uptime == undefined){uptime = "Disagree"}
+        var contractID = req.params.contractID;  
+        var Data = req.body.Data;
+        var Time_Period = req.body.Time_Period;
+        var Purposes = req.body.Purposes;
+        var Third_Parties = req.body.Third_Parties;
+        var Third_Countries = req.body.Third_Countries;
+        var Automated_Processing = req.body.Automated_Processing;
+        var Profiling = req.body.Profiling;
+        var Manual_Process = req.body.Manual_Process;
+
+        if(Data == undefined){uptime = "Disagree"}
+        if(Time_Period == undefined){uptime = "Disagree"}
+        if(Purposes == undefined){uptime = "Disagree"}
+        if(Third_Parties == undefined){uptime = "Disagree"}
+        if(Third_Countries == undefined){uptime = "Disagree"}
+        if(Automated_Processing == undefined){uptime = "Disagree"}
+        if(Profiling == undefined){uptime = "Disagree"}
+        if(Manual_Process == undefined){uptime = "Disagree"}
+         
 
     // Updating the database with new entries before sending them to Block-chain
-    Contract.findOneAndUpdate({ _id: deviceID }, { Status: 'Confirmed', Response:uptime }, function(err, consent) {
+    Contract.findOneAndUpdate({ _id: contractID }, { Status: 'Confirmed', Response:uptime }, function(err, consent) {
         if (err) console.log (err);
            res.redirect("/dashboard");
            console.log(consent);
