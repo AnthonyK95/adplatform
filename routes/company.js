@@ -76,9 +76,13 @@ router.post('/',function(req,res,next){
             Purposes:Purposes,
             Third_Parties:Third_Parties,
             Third_Countries:Third_Countries,
+            Response:"",
             Company_Signature:"1223",
             Client_Signature:"1423",
-            ID_Transaction:"1213"
+            ID_Transaction:"1213",
+            Automated_Processing:false,
+            Profiling:false,
+            Manual_Process:false
         });
 
         contract.save((err,contractfile)=>{

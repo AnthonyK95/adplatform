@@ -7,6 +7,7 @@ var Product = require('../dbSchemas/productAdvocate');
 // Getting the Scheme Contract 
 var Contract  = require('../dbSchemas/contractAdvocate');
 var fs = require('fs');
+var crypto = require('crypto');
 
 
 //Getting the Company Dashboard
@@ -18,7 +19,7 @@ router.get('/:contractID', function(req, res, next) {
         //Getting Contract ID
         var deviceID = req.params.contractID;
         // Getting Information from the database
-        Contract.find({_id:deviceID},'data -_id ',(err,datatodisplay)=>{
+        Contract.find({_id:deviceID},'Data + Time_Period + Purposes + Third_Parties + Third_Countries -_id ',(err,datatodisplay)=>{
            var words= JSON.stringify(datatodisplay);
             console.log(words.data);
 
@@ -45,10 +46,10 @@ router.post('/:contractID', function(req, res, next) {
     else{
         var deviceID = req.params.contractID;  
         var uptime = req.body.uptime;
-        if(uptime == undefined){uptime = "Disagree"  }
+        if(uptime == undefined){uptime = "Disagree"}
 
     // Updating the database with new entries before sending them to Block-chain
-    Contract.findOneAndUpdate({ _id: deviceID }, { Status: 'Confirmed' }, function(err, consent) {
+    Contract.findOneAndUpdate({ _id: deviceID }, { Status: 'Confirmed', Response:uptime }, function(err, consent) {
         if (err) console.log (err);
            res.redirect("/dashboard");
            console.log(consent);
