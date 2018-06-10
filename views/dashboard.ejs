@@ -88,14 +88,14 @@
 </section>
 <section id="Components">
     <div class="container">
-        <h1>Devices</h1>
+        <h1> <%= username %> Devices</h1>
         <div id="box">
-            <h1><%= username %></h1>
+           
             <!-- Listing all products -->
             <% product.forEach(function (products) {    %>
             <ul class="Items">
                 <li id="listedItems" style="cursor: pointer;">
-                    <h2><%= products._id%></h2>
+                    <h2><%= company.companyID%>&nbsp;&nbsp;&nbsp;<%= company.deviceType%>&nbsp;&nbsp;&nbsp;<%= products._id%></h2>
             </ul>
             <% }) %>
         </div>

@@ -79,8 +79,8 @@ router.post('/:contractID',async function(req, res, next) {
         console.log(Data_Requested_One)
         var data_one = req.body.data_one;
         var data_two = req.body.data_two;
-        if(data_one == undefined){data_one = "Disagree"}
-        if(data_two == undefined){data_two = "Disagree"}
+        if(data_one == undefined){data_one = "Disagree"}else{data_one = "Agreed"}
+        if(data_two == undefined){data_two = "Disagree"}else{data_two = "Agreed"}
 
         var response_data_one = data_one + " to Data: "+ Data_Requested_One + " Purpose: "+ Purposes_Requested_One;
         var response_data_two = data_two + " to Data: "+ Data_Requested_Two + " Purpose: "+ Purposes_Requested_Two;

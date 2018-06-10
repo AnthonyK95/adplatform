@@ -13,6 +13,7 @@ var fs = require('fs');
 
 var therapis = [];
 var deviceDI  = [];
+var deviceStuff;
 // Getting the Dashboard Page
 router.get('/', function(req, res, next) {
 
@@ -29,6 +30,7 @@ router.get('/', function(req, res, next) {
             else{
                await products.forEach((data)=> {
                     deviceDI.push (data._id);
+                     deviceStuff = data;
                });
             }
             console.log(deviceDI);
@@ -40,7 +42,6 @@ router.get('/', function(req, res, next) {
                    else{
                        therapis = [];
                    }
-
                })
             });
            console.log(therapis);
@@ -49,8 +50,8 @@ router.get('/', function(req, res, next) {
                 title:"Advocate | Dashboard Tools",
                 username:req.session.activeuser.username,
                 contract:therapis,
-                product:deviceDI
-
+                product:deviceDI,
+                company:deviceStuff
             });
         });
     }
