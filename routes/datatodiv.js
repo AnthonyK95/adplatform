@@ -33,33 +33,63 @@ router.get('/:contractID', function(req, res, next) {
 
 
 //Getting the Company Dashboard
-router.post('/:contractID', function(req, res, next) {
+router.post('/:contractID', async function(req, res, next) {
     if(!req.session.activeuser){
        res.redirect('/')
     }
-    else{
-        var contractID = req.params.contractID;  
-        var Data = req.body.Data;
-        var Time_Period = req.body.Time_Period;
-        var Purposes = req.body.Purposes;
-        var Third_Parties = req.body.Third_Parties;
-        var Third_Countries = req.body.Third_Countries;
-        var Automated_Processing = req.body.Automated_Processing;
-        var Profiling = req.body.Profiling;
-        var Manual_Process = req.body.Manual_Process;
+    else {
 
-        if(Data == undefined){uptime = "Disagree"}
-        if(Time_Period == undefined){uptime = "Disagree"}
-        if(Purposes == undefined){uptime = "Disagree"}
-        if(Third_Parties == undefined){uptime = "Disagree"}
-        if(Third_Countries == undefined){uptime = "Disagree"}
-        if(Automated_Processing == undefined){uptime = "Disagree"}
-        if(Profiling == undefined){uptime = "Disagree"}
-        if(Manual_Process == undefined){uptime = "Disagree"}
+        //Public Variables in order to get the data from db
+        var company;
+        var deviceID;
+        var deviceType;
+        var contractID = req.params.contractID;  
+        var Data_Requested_One;
+        var Data_Requested_Two;
+        var Time_Period;
+        var Purposes_Requested_One;
+        var Purposes_Requested_Two;
+        var Third_Parties;
+        var Third_Countries;
+        var Automated_Processing;
+        var Profiling ;
+        var Manual_Process;
+
+
+       await Contract.findOne({_id:contractID},function(err,words) {
+              company = words.company;
+              deviceID = words.deviceID;
+              deviceType = words.deviceType;
+               Data_Requested_One = words.Data.Data_Requested_One;
+               Data_Requested_Two = words.Data.Data_Requested_Two;
+              Time_Period = words.Time_Period;
+               Purposes_Requested_One = words.Purposes.Purposes_Requested_One;
+               Purposes_Requested_Two = words.Purposes.Purposes_Requested_Two;
+              Third_Parties = words.Third_Parties;
+              Third_Countries = words.Third_Countries;
+              Automated_Processing = words.Automated_Processing;
+              Profiling = words.Profiling;
+              Manual_Process = words.Manual_Process;
+              
+        })
+        console.log(Data_Requested_One)
+        var data_one = req.body.data_one;
+        var data_two = req.body.data_two;
+        if(data_one == undefined){data_One = "Disagree"}
+        if(data_two == undefined){data_Two = "Disagree"}
+
+        var response_data_one = data_one + " to Data: "+ Data_Requested_One + " Purpose: "+ Purposes_Requested_One;
+        var response_data_two = data_two + " to Data: "+ Data_Requested_Two + " Purpose: "+ Purposes_Requested_Two;
+        
+        var tohash = company+deviceID+deviceType+Data_Requested_One+Data_Requested_Two+Time_Period+Purposes_Requested_One+Purposes_Requested_Two+Third_Parties+Third_Countries+Automated_Processing+Profiling+Manual_Process+response_data_one+response_data_two;
+         var hash = crypto.createHash('sha256').update(tohash).digest('hex');
+         var client_Signature = hash;
+
          
 
     // Updating the database with new entries before sending them to Block-chain
-    Contract.findOneAndUpdate({ _id: contractID }, { Status: 'Confirmed', Response:uptime }, function(err, consent) {
+    await Contract.findOneAndUpdate({ _id: contractID }, 
+        { Status: 'Confirmed',Response:{Data_One:response_data_one,Data_Two:response_data_two},Client_Signature:client_Signature}, function(err, consent) {
         if (err) console.log (err);
            res.redirect("/dashboard");
            console.log(consent);

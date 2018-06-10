@@ -92,9 +92,12 @@ router.post('/',function(req,res,next){
                 Purposes_Requested_One:Purposes_One,
                 Purposes_Requested_Two:Purposes_Two
             },
+            Response:{
+                Data_One:"",
+                Data_Two:""
+            },
             Third_Parties:Third_Parties,
             Third_Countries:Third_Countries,
-            Response:"",
             Company_Signature:Company_Signature,
             Client_Signature:"",
             ID_Transaction:"",

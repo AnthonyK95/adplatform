@@ -19,7 +19,10 @@ var contractSchema = new mongoose.Schema ({
     Third_Parties:String,
     Third_Countries:String,
     Company_Signature:String,
-    Response:String,
+    Response:{
+        Data_One:String,
+        Data_Two:String
+    },
     Client_Signature:String,
     ID_Transaction:String,
     Automated_Processing:Boolean,

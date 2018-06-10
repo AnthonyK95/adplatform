@@ -25,25 +25,20 @@
 
             <form action="/content/<%= deviceID%>" method="POST">
 
-                <!-- Begginig Of the Displaying Boxes -->
+            <!-- Begginig Of the Displaying Boxes -->
             <div id="box" style="margin-top: 10vh;">
-              <input type="checkbox" name="uptime" value="Agreed" id="a">
-              <label style="font-size: 20px;"><%= uptime.Data %></label>
+              <input type="checkbox" name="data_one" value="Agreed" id="a">
+              <label style="font-size: 20px;">Data Type: <%= uptime.Data.Data_Requested_One %></label><br>
+               <label style="font-size: 20px;">Purposes: <%= uptime.Purposes.Purposes_Requested_One %></label>
             </div>
             <div id="box" style="margin-top: 3vh;">
-                <input type="checkbox" name="uptime" value="Agreed" id="a">
-                <label style="font-size: 20px;"><%= uptime.Time_Period %></label>
+                <input type="checkbox" name="data_two" value="Agreed" id="a">
+                <label style="font-size: 20px;">Data Type: <%= uptime.Data.Data_Requested_Two %></label><br>
+               <label style="font-size: 20px;">Purposes: <%= uptime.Purposes.Purposes_Requested_Two %></label>
             </div>
-            
-
         </div>
         <input type="submit" class="create" name="submit" value="Accept Contract" style="margin-top: 40px;">
     </form>
     </section>
-
-
-        
-
-  
 </body>
 </html>
