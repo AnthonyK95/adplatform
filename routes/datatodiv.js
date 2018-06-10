@@ -56,6 +56,7 @@ router.post('/:contractID',async function(req, res, next) {
         var Automated_Processing;
         var Profiling ;
         var Manual_Process;
+        var comp_Signature;
 
 
        await Contract.findOne({_id:contractID},function(err,words) {
@@ -78,8 +79,8 @@ router.post('/:contractID',async function(req, res, next) {
         console.log(Data_Requested_One)
         var data_one = req.body.data_one;
         var data_two = req.body.data_two;
-        if(data_one == undefined){data_One = "Disagree"}
-        if(data_two == undefined){data_Two = "Disagree"}
+        if(data_one == undefined){data_one = "Disagree"}
+        if(data_two == undefined){data_two = "Disagree"}
 
         var response_data_one = data_one + " to Data: "+ Data_Requested_One + " Purpose: "+ Purposes_Requested_One;
         var response_data_two = data_two + " to Data: "+ Data_Requested_Two + " Purpose: "+ Purposes_Requested_Two;
@@ -98,7 +99,7 @@ router.post('/:contractID',async function(req, res, next) {
          
 
     // Updating the database with new entries before sending them to Block-chain
-     Contract.findOneAndUpdate({ _id: contractID }, 
+  await Contract.findOneAndUpdate({ _id: contractID }, 
         { Status: 'Confirmed',
         Response:{Data_One:response_data_one,Data_Two:response_data_two},ID_Transaction:transactionID,Client_Signature:client_Signature},
         async function(err, consent) {
