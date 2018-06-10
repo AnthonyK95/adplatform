@@ -4,8 +4,10 @@ var mongoose = require('mongoose');
 var User = require('../dbSchemas/userAdvocate');
 var session = require('express-session');
 var Product = require('../dbSchemas/productAdvocate');
-// Getting the Scheme Contract 
+// Getting the Contract Scheme 
 var Contract  = require('../dbSchemas/contractAdvocate');
+//Getting the Transaction Scheme
+var Transaction = require('../dbSchemas/transactionsAdvocate');
 var fs = require('fs');
 var crypto = require('crypto');
 
@@ -57,19 +59,20 @@ router.post('/:contractID',async function(req, res, next) {
 
 
        await Contract.findOne({_id:contractID},function(err,words) {
-              company = words.company;
-              deviceID = words.deviceID;
-              deviceType = words.deviceType;
-               Data_Requested_One = words.Data.Data_Requested_One;
-               Data_Requested_Two = words.Data.Data_Requested_Two;
-              Time_Period = words.Time_Period;
-               Purposes_Requested_One = words.Purposes.Purposes_Requested_One;
-               Purposes_Requested_Two = words.Purposes.Purposes_Requested_Two;
-              Third_Parties = words.Third_Parties;
-              Third_Countries = words.Third_Countries;
-              Automated_Processing = words.Automated_Processing;
-              Profiling = words.Profiling;
-              Manual_Process = words.Manual_Process;
+            company = words.company;
+            deviceID = words.deviceID;
+            deviceType = words.deviceType;
+            Data_Requested_One = words.Data.Data_Requested_One;
+            Data_Requested_Two = words.Data.Data_Requested_Two;
+            Time_Period = words.Time_Period;
+            Purposes_Requested_One = words.Purposes.Purposes_Requested_One;
+            Purposes_Requested_Two = words.Purposes.Purposes_Requested_Two;
+            Third_Parties = words.Third_Parties;
+            Third_Countries = words.Third_Countries;
+            Automated_Processing = words.Automated_Processing;
+            Profiling = words.Profiling;
+            Manual_Process = words.Manual_Process;
+            comp_Signature = words.Company_Signature;
               
         })
         console.log(Data_Requested_One)
@@ -82,15 +85,28 @@ router.post('/:contractID',async function(req, res, next) {
         var response_data_two = data_two + " to Data: "+ Data_Requested_Two + " Purpose: "+ Purposes_Requested_Two;
         
         var tohash = company+deviceID+deviceType+Data_Requested_One+Data_Requested_Two+Time_Period+Purposes_Requested_One+Purposes_Requested_Two+Third_Parties+Third_Countries+Automated_Processing+Profiling+Manual_Process+response_data_one+response_data_two;
-         var hash = crypto.createHash('sha256').update(tohash).digest('hex');
-         var client_Signature = hash;
+        var hash = crypto.createHash('sha256').update(tohash).digest('hex');
+        var client_Signature = hash;
 
+        var transactionID =comp_Signature+req.session.activeuser._id;
+        var transaction = new Transaction({
+            _id:transactionID,
+            Company_Signature:comp_Signature,
+            Client_Signature:client_Signature,
+            Timestamp:Date.now()
+        });
          
 
     // Updating the database with new entries before sending them to Block-chain
      Contract.findOneAndUpdate({ _id: contractID }, 
-        { Status: 'Confirmed',Response:{Data_One:response_data_one,Data_Two:response_data_two},Client_Signature:client_Signature}, function(err, consent) {
+        { Status: 'Confirmed',
+        Response:{Data_One:response_data_one,Data_Two:response_data_two},ID_Transaction:transactionID,Client_Signature:client_Signature},
+        async function(err, consent) {
         if (err) console.log (err);
+           await transaction.save((err,transaction)=>{
+                if (err) console.log(err);
+                else{console.log(transaction);}
+            });
            res.redirect("/dashboard");
            console.log(consent);
         });
