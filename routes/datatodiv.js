@@ -33,7 +33,7 @@ router.get('/:contractID', function(req, res, next) {
 
 
 //Getting the Company Dashboard
-router.post('/:contractID', async function(req, res, next) {
+router.post('/:contractID',async function(req, res, next) {
     if(!req.session.activeuser){
        res.redirect('/')
     }
@@ -88,7 +88,7 @@ router.post('/:contractID', async function(req, res, next) {
          
 
     // Updating the database with new entries before sending them to Block-chain
-    await Contract.findOneAndUpdate({ _id: contractID }, 
+     Contract.findOneAndUpdate({ _id: contractID }, 
         { Status: 'Confirmed',Response:{Data_One:response_data_one,Data_Two:response_data_two},Client_Signature:client_Signature}, function(err, consent) {
         if (err) console.log (err);
            res.redirect("/dashboard");
