@@ -73,10 +73,10 @@ router.post('/:contractID',async function(req, res, next) {
             Automated_Processing = words.Automated_Processing;
             Profiling = words.Profiling;
             Manual_Process = words.Manual_Process;
-            comp_Signature = words.Company_Signature;
-              
+            comp_Signature = words.Company_Signature;          
         })
         console.log(Data_Requested_One)
+
         var data_one = req.body.data_one;
         var data_two = req.body.data_two;
         if(data_one == undefined){data_one = "Disagree"}else{data_one = "Agreed"}

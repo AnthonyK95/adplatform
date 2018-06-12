@@ -20,27 +20,46 @@
                 </ul>
             </div>
          </nav>
-   <section id="Components">
+   <section id="Components" style="height:80vh;">
         <div class="container">
 
             <form action="/content/<%= deviceID%>" method="POST">
 
+
+        <!-- Controlling the output of the data -- >
+        <% if (uptime.Automated_Processing == false) {var x = "The data we collect will not be used for Automated Processing"}
+        else{x = "The data we collect will be used for Automated Processing"}%>
+        <% if (uptime.Profiling == false) {var y = "The data we collect will not be used for Profiling"}else{
+            x = "The data we collect will  be used for Profiling"
+        }%>
+        <% if (uptime.Manual_Process == false) {var z = "The data we collect will not be used for Manual Process "} else{
+            x = "The data we collect will be used for Manual Process"
+        }%>
+
+
+        
             <!-- Begginig Of the Displaying Boxes -->
             <div id="box" style="margin-top: 10vh;">
               <input type="checkbox" name="data_one" value="Agreed" id="a">
               <label style="font-size: 20px;">Data Type: <%= uptime.Data.Data_Requested_One %></label><br>
                <label style="font-size: 20px;">Purposes: <%= uptime.Purposes.Purposes_Requested_One %></label><br>
                <label style="font-size: 20px;">Time Period: <%= uptime.Time_Period %></label><br>
-               <label style="font-size: 20px;">Time Period: <%= uptime.Third_Parties %></label><br>
-               <label style="font-size: 20px;">Time Period: <%= uptime.Third_Countries %></label>
+               <label style="font-size: 20px;">Third Parties: <%= uptime.Third_Parties %></label><br>
+               <label style="font-size: 20px;">Third Countries: <%= uptime.Third_Countries %></label><br>
+               <label style="font-size: 20px;">Automated Processing: <%= x %></label><br>
+               <label style="font-size: 20px;">Profiling: <%= y %></label><br>
+               <label style="font-size: 20px;">Manual Process: <%= z %></label><br>
             </div>
             <div id="box" style="margin-top: 3vh;">
                 <input type="checkbox" name="data_two" value="Agreed" id="a">
-                <label style="font-size: 20px;">Data Type: <%= uptime.Data.Data_Requested_Two %></label><br>
+                 <label style="font-size: 20px;">Data Type: <%= uptime.Data.Data_Requested_Two %></label><br>
                <label style="font-size: 20px;">Purposes: <%= uptime.Purposes.Purposes_Requested_Two %></label><br>
-              <label style="font-size: 20px;">Time Period: <%= uptime.Time_Period %></label><br>
-               <label style="font-size: 20px;">Time Period: <%= uptime.Third_Parties %></label><br>
-               <label style="font-size: 20px;">Time Period: <%= uptime.Third_Countries %></label>
+               <label style="font-size: 20px;">Time Period: <%= uptime.Time_Period %></label><br>
+               <label style="font-size: 20px;">Third Parties: <%= uptime.Third_Parties %></label><br>
+               <label style="font-size: 20px;">Third Countries: <%= uptime.Third_Countries %></label><br>
+               <label style="font-size: 20px;">Automated Processing: <%= x %></label><br>
+               <label style="font-size: 20px;">Profiling: <%= y %></label><br>
+               <label style="font-size: 20px;">Manual Process: <%= z %></label><br>
             </div>
         </div>
         <input type="submit" class="create" name="submit" value="Accept Contract" style="margin-top: 40px;">
