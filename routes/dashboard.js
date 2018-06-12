@@ -71,7 +71,8 @@ router.post('/', function (req,res,next){
                 owner:req.session.activeuser._id,
                 deviceID:req.body.deviceID,
                 companyID:req.body.companyID,
-                deviceType: req.body.deviceType
+                deviceType: req.body.deviceType,
+                BlockchainID:""
             });
 
             device.save((err,product)=>{

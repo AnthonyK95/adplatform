@@ -6,7 +6,8 @@ var productSchema = new mongoose.Schema({
     owner: String,
     deviceID: String,
     companyID:String,
-    deviceType:String
+    deviceType:String,
+    BlockchainID:String
 });
 
 // Export the product to the project

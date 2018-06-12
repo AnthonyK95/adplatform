@@ -27,7 +27,7 @@ router.post('/', function(req,res,next){
          res.send('cant find user');
         }
         else{
-            if(user.username !== 'samsung' && user.username !== 'intel'){
+            if(user.username !== 'company' && user.username !== 'company2'){
                 req.session.activeuser =  user;
                 res.redirect('/dashboard');
             }
